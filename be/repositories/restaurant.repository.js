@@ -9,11 +9,42 @@ export const getRestaurantsFromRepository = async function (query) {
   }
 };
 
-export const updateItemQuantityInRepository = async function (restId, itemId, newQuantity) {
+export const addItemToMenu = async function (restId, item) {
     try {
+        const updatedRestaurant = await Restaurant.findByIdAndUpdate(
+            restId, 
+            { $push: {menu: item} },
+            { new: true, useFindAndModify: false }
+        ).lean();
+        return updatedRestaurant;
+    } catch (e) {
+        throw Error("Error while adding item to menu ")
+    }
+};
+
+export const deleteItemFromMenu = async function (restId, item) {
+    try {
+        const updatedRestaurant = await Restaurant.findByIdAndUpdate(
+            restId, 
+            { $pull: {menu: item} },
+            { new: true, useFindAndModify: false }
+        ).lean();
+        return updatedRestaurant;
+    } catch (e) {
+        throw Error("Error while deleting item from menu ")
+    }
+};
+
+export const updateItemInMenu = async function (restId, itemId, body) {
+    try {
+        const updateObject = {};
+        for (const key in body) {
+            updateObject[`menu.$.${key}`] = body[key];
+        }
+
         const updatedRestaurant = await Restaurant.findOneAndUpdate(
             {"_id": restId, "menu.item_id": itemId},
-            { $set: { 'menu.$.quantity': newQuantity } },
+            { $set: updateObject },
             { new: true, useFindAndModify: false }
         ).lean();
         return updatedRestaurant;

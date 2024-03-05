@@ -5,7 +5,7 @@ export const getCustomers = async (req, res) => {
     const customers = await getCustomersFromRepository({});
     res.status(200).send(customers);
   } catch (e) {
-    res.status(500).send(`${e.message} failed to fetch a list of superheroes`);
+    res.status(500).send(`${e.message} failed to fetch a list of customers`);
   }
 }
 
@@ -15,6 +15,6 @@ export const getCustomer = async (req, res) => {
     const customer = await getCustomersFromRepository({ _id: id });
     res.status(200).send(customer);
   } catch (e) {
-    res.status(500).send(`${e.message} failed to fetch superhero ${id}`);
+    res.status(500).send(`${e.message} failed to fetch customer ${id}`);
   }
 }

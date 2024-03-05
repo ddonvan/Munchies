@@ -9,7 +9,8 @@ const OrderSchema = new mongoose.Schema(
                 item_id: { type: Number, required: true }
             }
         ],
-        pickup_time: { type: String }
+        pickup_time: { type: String },
+        status: { type: String }
     },
     { timestamps: true, strictQuery: true }
 );

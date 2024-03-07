@@ -6,9 +6,12 @@ const OrderSchema = new mongoose.Schema(
         restaurant_id: { type: mongoose.Schema.Types.ObjectId, ref: "Restaurant"},
         items: [
             {
-                item_id: { type: Number, required: true }
+                item_id: { type: mongoose.Schema.Types.ObjectId, ref: "Menu" },
+                // quantity of how many items the customer ordered of that item
+                quantity: { type: Number, required: true}
             }
         ],
+        subtotal: { type: Float},
         pickup_time: { type: String },
         status: { type: String }
     },

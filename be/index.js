@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import restaurants from "./routes/restaurant.route.js";
+import orders from "./routes/order.route.js";
 import customers from "./routes/customer.route.js";
 import { connectDB } from "./utils/database.js";
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use("/customers", customers);
+app.use("/orders", orders);
 app.use("/restaurants", restaurants);
 
 app.listen(port, function () {

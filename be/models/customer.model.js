@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const CustomerSchema = new mongoose.Schema(
     {
-        firstName: { type: String, requried: true },
-        lastName: { type: String, requried: true },
+        firstName: { type: String, requiried: true },
+        lastName: { type: String, requiried: true },
         email: { type: String , required: true},
         phone: { type: String },
     },

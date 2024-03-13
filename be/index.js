@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import restaurants from "./routes/restaurant.route.js";
 import orders from "./routes/order.route.js";
 import customers from "./routes/customer.route.js";
+import menus from "./routes/menu.route.js";
 import { connectDB } from "./utils/database.js";
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 app.use("/customers", customers);
 app.use("/orders", orders);
 app.use("/restaurants", restaurants);
+app.use("/menus", menus);
 
 app.listen(port, function () {
   console.log(`🚀 Fire app listening on port ${port}!`);

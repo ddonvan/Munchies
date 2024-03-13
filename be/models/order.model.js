@@ -7,7 +7,7 @@ const OrderSchema = new mongoose.Schema(
         items: [
             {
                 item_id: { type: mongoose.Schema.Types.ObjectId, ref: "menus" },
-                // quantity of how many items the customer ordered of that item
+                // quantity of how many the customer ordered of that item
                 quantity: { type: Number, required: true}
             }
         ],

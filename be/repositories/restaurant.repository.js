@@ -9,46 +9,25 @@ export const getRestaurantsFromRepository = async function (query) {
   }
 };
 
-export const addItemToMenu = async function (restId, item) {
+export const addRestaurantToRepository = async function (payload) {
     try {
-        const updatedRestaurant = await Restaurant.findByIdAndUpdate(
-            restId, 
-            { $push: {menu: item} },
-            { new: true, useFindAndModify: false }
-        ).lean();
-        return updatedRestaurant;
+        const addedRestaurant = new Restaurant(payload);
+        const savedRestaurant = await addedRestaurant.save();
+        return savedRestaurant;
     } catch (e) {
-        throw Error("Error while adding item to menu ")
+        throw Error("Error while adding restaurant")
     }
 };
 
-export const deleteItemFromMenu = async function (restId, item) {
+export const updateRestaurantinRepository = async function (query, payload) {
     try {
-        const updatedRestaurant = await Restaurant.findByIdAndUpdate(
-            restId, 
-            { $pull: {menu: item} },
-            { new: true, useFindAndModify: false }
+      const updatedRestaurant = await Restaurant.findOneAndUpdate(
+          { ...query },
+          { ...payload },
+          { new: true }
         ).lean();
         return updatedRestaurant;
     } catch (e) {
-        throw Error("Error while deleting item from menu ")
-    }
-};
-
-export const updateItemInMenu = async function (restId, itemId, body) {
-    try {
-        const updateObject = {};
-        for (const key in body) {
-            updateObject[`menu.$.${key}`] = body[key];
-        }
-
-        const updatedRestaurant = await Restaurant.findOneAndUpdate(
-            {"_id": restId, "menu.item_id": itemId},
-            { $set: updateObject },
-            { new: true, useFindAndModify: false }
-        ).lean();
-        return updatedRestaurant;
-    } catch (e) {
-        throw Error("Error while updating item quantity")
+        throw Error("Error while updating restaurant")
     }
 };

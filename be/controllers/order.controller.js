@@ -50,9 +50,6 @@ export const updateStatus= async(req, res) => {
     const { id } = req.params;
     const { body } = req;
 
-    console.log("ID:" ,id);
-    console.log("body:" ,body);
-
     try {
         const order = await updateOrderStatus({_id: id}, body);
 
@@ -70,6 +67,6 @@ export const createOrder = async (req, res) => {
       const order = await createOrderInRepository(body);
       res.status(200).send(order);
     } catch (e) {
-      res.status(500).send(`failed to fetch order ${e.message}`);
+      res.status(500).send(`failed to create order ${e.message}`);
     }
 };

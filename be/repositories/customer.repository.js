@@ -8,3 +8,13 @@ export const getCustomersFromRepository = async function (query) {
       throw Error("Error while fetching customers");
     }
   };
+
+  export const addCustomerToRepository = async function (payload) {
+    try {
+        const addedCustomer = new Customer(payload);
+        const savedCustomer = await addedCustomer.save();
+        return savedCustomer;
+    } catch (e) {
+        throw Error("Error while adding customer")
+    }
+};

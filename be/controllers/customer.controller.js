@@ -1,4 +1,4 @@
-import { getCustomersFromRepository } from '../repositories/customer.repository.js';
+import { getCustomersFromRepository, addCustomerToRepository } from '../repositories/customer.repository.js';
 
 export const getCustomers = async (req, res) => {
   try {
@@ -16,5 +16,16 @@ export const getCustomer = async (req, res) => {
     res.status(200).send(customer);
   } catch (e) {
     res.status(500).send(`${e.message} failed to fetch customer ${id}`);
+  }
+}
+
+export const addCustomer = async (req, res) => {
+  const { body } = req;
+  try {
+    const customer = await addCustomerToRepository(body);
+    console.log(customer);
+    res.status(200).send(customer);
+  } catch (e) {
+    res.status(500).send(`${e.message} failed to add customer`);
   }
 }

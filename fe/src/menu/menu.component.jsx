@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+console.log("working on new branch")
+
 export const MenuComponent = ({}) => {
     const [menus, setMenu] = useState([]);
 

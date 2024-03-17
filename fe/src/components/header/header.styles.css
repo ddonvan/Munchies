@@ -1,0 +1,39 @@
+.navbar {
+    /* position: absolute; Fixed position */
+    top: 0; /* Position at the top of the page */
+    width: 100%; /* Full width */
+    background-color: #0b161a; /* Background color for the navigation bar */
+    color: #ebebf1; /* Text color */
+    padding: 20px; /* Padding for the content */
+    display: flex; /* Set display to flex */
+    justify-content: space-between; /* Align items at the edges */
+    align-items: center; /* Center vertically */
+    margin-bottom: 20px;
+  }
+
+  .navbar h1 {
+    font-size: 24px; /* Adjust the font size */
+    font-family:sans-serif;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: bold;
+
+  }
+
+  .navbar button {
+    background-color: #dc894a; /* Transparent background for the button */
+    color: white; /* Text color for the button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Set cursor to pointer */
+    font-size: 16px; /* Adjust font size */
+    width: 80px;
+    height: 36px;
+  }
+
+
+.search-bar-container {
+    flex: 1; /* Take up remaining space */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Align items horizontally in the center */
+    align-items: center; /* Align items vertically in the center */
+}

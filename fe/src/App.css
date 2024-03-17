@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  max-height: 100vh; /* Set a maximum height equal to the viewport height */
+  overflow-y: auto;
 }
 
 .App-logo {

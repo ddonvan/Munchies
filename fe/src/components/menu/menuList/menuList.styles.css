@@ -1,0 +1,41 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    
+}
+
+.menu-item-actions {
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.quantity-selector {
+    padding: 36px;
+}
+
+.quantity-selector Button {
+    border-radius: 8px;
+    margin: 8px;
+    background-color: #dc894a;
+    border: #dc894a;
+    outline: none;
+}
+
+.quantity-selector Button:hover {
+    background-color: #ab6b3b;
+}
+
+.quantity-selector Button:active {
+    background-color: #f5eae1;
+}
+
+.add-to-cart {
+    background-color: #dc894a;
+    border: #dc894a;
+}
+
+.add-to-cart:hover {
+    background-color: #ab6b3b;
+
+}

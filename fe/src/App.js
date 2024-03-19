@@ -7,6 +7,7 @@ import axios from 'axios';
 
 function App() {
   const [restaurants, setRestaurants] = useState([]);
+  const [menus, setMenus] = useState([]);
 
   //Restaurant fetching
   useEffect(() => {
@@ -19,6 +20,24 @@ function App() {
     fetchRestaurants();
   }, []);
 
+  //Menu fetching
+  useEffect(() => {
+    const fetchMenus = async () => {
+      const response = await axios.get(
+        'http://localhost:8000/menus'
+      );
+      setMenus(response.data);
+    };
+    fetchMenus();
+  }, []);
+
+  //Menu Item Filtering
+  // const handleOrderClick= (restId) => {
+  //   setSelectedRestId(restId);
+  // };
+
+  // const filteredMenuItems = selectedRestId ? menus.filter(item => item.rest_id === selectedRestId) : [];
+
 
   return (
     <div className="App">
@@ -27,7 +46,7 @@ function App() {
 
       <div className='Restaurants'>
         <h2>Restaurants</h2>
-        <RestaurantList restaurants={restaurants}/>
+        <RestaurantList restaurants={restaurants} menus={menus}/>
       </div>
 
       {/* <div className='Menu'>

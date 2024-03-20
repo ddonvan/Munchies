@@ -36,3 +36,8 @@
     margin: 8px
     
 }
+
+.modal-dialog {
+    max-width: 600px;
+    margin: 0 auto;
+}

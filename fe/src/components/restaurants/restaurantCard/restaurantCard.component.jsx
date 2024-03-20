@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import './restaurantCard.styles.css'
-export const Restaurant = ({ restaurant }) => {
-    const { name, address, imageURL } = restaurant; //components of restaurant model
+import { MenuList } from "../../menu/menuList/menuList.component";
+export const Restaurant = ({ restaurant, menus }) => {
+    const { _id, name, address, imageURL } = restaurant; //components of restaurant model
+
+    const [ showModal, setShowModal] = useState(false);
+
+    const handleOrderClick = () => {
+        setShowModal(true); // Open Modal
+        console.log(restaurant._id);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false); // Close Modal
+    }
+    
+    const filteredMenus = menus.filter(menu => menu.rest_id === _id);
+    console.log("filtered:",filteredMenus);
 
     return (
         <div className="restaurant-container">
@@ -14,7 +30,23 @@ export const Restaurant = ({ restaurant }) => {
             />
             <h3>{name}</h3>
             <h5>{address}</h5>
-            <Button className="order-button" variant="outline-primary">Order</Button>
+            <Button className="order-button" variant="outline-primary"
+             onClick={handleOrderClick}>Order</Button>
+
+            {/* Modal for Menu Items */}
+            <Modal show={showModal} onHide={handleCloseModal} className="modal">
+                <Modal.Header closeButton>
+                    <Modal.Title>{name} Items</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <MenuList menus={filteredMenus} />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

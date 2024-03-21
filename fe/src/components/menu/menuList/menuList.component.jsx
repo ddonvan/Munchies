@@ -1,28 +1,12 @@
-import React, { useState } from "react";
+// MenuList.component.jsx
+import React from "react";
 import { Menu } from "../menuCard/menuCard.component";
 import Button from "react-bootstrap/Button";
 import './menuList.styles.css';
-
+import { useCart } from '../../../pages/CartPage/CartContext'; // Import useCart hook
 
 export const MenuList = ({ menus }) => {
-    const [cart, setCart] = useState({});
-
-    const addToCart = (itemId) => {
-        setCart(prevCart => ({
-            ...prevCart,
-            [itemId]: (prevCart[itemId] ||0) + 1
-        }));
-    };
-
-    const removeFromCart = (itemId) => {
-        setCart(prevCart => {
-            const updatedCart = { ...prevCart };
-            if (updatedCart[itemId] > 0) {
-                updatedCart[itemId]--;
-            }
-            return updatedCart;
-        });
-    };
+    const { addToCart } = useCart(); // Access addToCart function from the context
 
     return (
         <div className="menuList">
@@ -30,23 +14,10 @@ export const MenuList = ({ menus }) => {
                 <div key={menu.item_name} className="menu-item">
                     <Menu key={menu.item_name} menu={menu}/>  
                     <div className="menu-item-actions">
-                        <div className="quantity-selector">
-                            <Button onClick={() => removeFromCart(menu.item_id)}>-</Button>
-                            <span>{cart[menu.item_id] || 0}</span>
-                            <Button onClick={() => addToCart(menu.item_id)}>+</Button>
-                        </div>
-                        <Button className="add-to-cart">Add to Cart</Button>
+                        <Button onClick={() => addToCart(menu.item_id)} className="add-to-cart">Add to Cart</Button> {/* Call addToCart function on button click */}
                     </div>
                 </div>
             ))}
         </div>
-    )
-    
-    // return(
-    //     <div className="menuList">
-    //         {menus.map(menu => (
-    //             <Menu key={menu.item_name} menu={menu}/>       
-    //         ))}
-    //     </div>
-    // )
-} 
+    );
+}

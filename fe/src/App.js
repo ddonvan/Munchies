@@ -1,60 +1,34 @@
+import React, { useState } from 'react';
 import './App.css';
-import { MenuComponent } from './components/menu/menu.component';
-import { RestaurantList } from './components/restaurants/restaurantList/restaurantList.component';
-import { PageHeader } from './components/header/header.component';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { OurRoutes } from './routes';
 
 function App() {
-  const [restaurants, setRestaurants] = useState([]);
-  const [menus, setMenus] = useState([]);
+  // State for cart items
+  const [cart, setCart] = useState({});
 
-  //Restaurant fetching
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      const response = await axios.get(
-        'http://localhost:8000/restaurants',
-        );
-        setRestaurants(response.data);
-    };
-    fetchRestaurants();
-  }, []);
+  // Function to add an item to the cart
+  const addToCart = (itemId) => {
+    setCart(prevCart => ({
+      ...prevCart,
+      [itemId]: (prevCart[itemId] || 0) + 1
+    }));
+  };
 
-  //Menu fetching
-  useEffect(() => {
-    const fetchMenus = async () => {
-      const response = await axios.get(
-        'http://localhost:8000/menus'
-      );
-      setMenus(response.data);
-    };
-    fetchMenus();
-  }, []);
-
-  //Menu Item Filtering
-  // const handleOrderClick= (restId) => {
-  //   setSelectedRestId(restId);
-  // };
-
-  // const filteredMenuItems = selectedRestId ? menus.filter(item => item.rest_id === selectedRestId) : [];
-
+  // Function to remove an item from the cart
+  const removeFromCart = (itemId) => {
+    setCart(prevCart => {
+      const updatedCart = { ...prevCart };
+      if (updatedCart[itemId] > 0) {
+        updatedCart[itemId]--;
+      }
+      return updatedCart;
+    });
+  };
 
   return (
     <div className="App">
-      <PageHeader/>
-
-
-      <div className='Restaurants'>
-        <h2>Restaurants</h2>
-        <RestaurantList restaurants={restaurants} menus={menus}/>
-      </div>
-
-      {/* <div className='Menu'>
-        <h3>Menu List</h3>
-        <MenuComponent></MenuComponent>
-      </div> */}
-
-
+      {/* Render the routes */}
+      <OurRoutes cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} />
     </div>
   );
 }

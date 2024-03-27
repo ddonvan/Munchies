@@ -6,5 +6,45 @@
     border-radius: 4px;
     padding: 16px;
     margin-bottom: 16px;
-    width: 300px;
+    margin-left: 16px;
+    width: 330px;
+    /* overflow: hidden; */
+}
+.order-container p {
+    margin-bottom: 6px;
+}
+.order-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-container li {
+    display: inline;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.item-image {
+    margin-right: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;    
+    box-shadow: 0 0 2px;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-info p {
+    margin-bottom: 0px;
+}
+
+.price {
+    font-weight: 600;
 }

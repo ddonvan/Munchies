@@ -6,8 +6,10 @@ import { MenuList } from '../../components/menu/menuList/menuList.component';
 import { OrderList } from '../../components/orders/orderList/orderList.component';
 import axios from 'axios';
 import { Order } from '../../components/orders/orderCard/orderCard.component';
+import { useData } from '../HomePage/HomePage';
 
 const CartPage = () => {
+  
   const { cart } = useCart(); // Access cart state from the context
   const [orders, setOrders] = useState([]);
 

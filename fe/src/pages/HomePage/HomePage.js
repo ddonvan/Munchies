@@ -1,14 +1,13 @@
 import { RestaurantList } from '../../components/restaurants/restaurantList/restaurantList.component';
 import { PageHeader } from '../../components/header/header.component';
-import { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './HomePage.styles.css' ;
-
 
 function HomePage() {
     const [restaurants, setRestaurants] = useState([]);
     const [menus, setMenus] = useState([]);
-  
+    
     //Restaurant fetching
     useEffect(() => {
       const fetchRestaurants = async () => {
@@ -33,19 +32,22 @@ function HomePage() {
   
   
     return (
-      <div className="HomePage">
-        <PageHeader/>
-  
-  
-        <div className='Restaurants'>
-          <h2>Restaurants</h2>
-          <RestaurantList restaurants={restaurants} menus={menus}/>
+      
+        <div className="HomePage">
+          <PageHeader/>
+    
+    
+          <div className='Restaurants'>
+            <h2>Restaurants</h2>
+            <RestaurantList restaurants={restaurants} menus={menus}/>
+          </div>
+    
+          
         </div>
-  
-  
-      </div>
+      
     );
   }
   
-  export default HomePage;
+export default HomePage;
+
   

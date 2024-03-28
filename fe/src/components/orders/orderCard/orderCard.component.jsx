@@ -1,8 +1,10 @@
 import React from "react";
 import './orderCard.styles.css'
 import { useData } from "../../../pages/HomePage/DataContext";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
 
-export const Order = ({ order }) => {
+export const Order = ({ order, onDelete }) => {
     const {
         _id, customer_id, restaurant_id,
         items, pickup_time, status 
@@ -24,9 +26,21 @@ export const Order = ({ order }) => {
         return acc;
     }, 0);
 
+    const handleDeleteOrder = async (order) => {
+        try {
+            await axios.delete(`http://localhost:8000/orders/delete/order/${order._id}`);
+            console.log("Order deleted")
+            onDelete(order);
+        } catch (e) {
+            console.error("Error deleting order:", e);
+        }
+    }
 
     return (
         <div className="order-container">
+            <div className="order-delete">
+                <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
+            </div>
             <p>Order#: {order._id}</p>
             {restaurant && (
                 <div>

@@ -1,4 +1,4 @@
-import { addItemToOrder, getOrdersFromRepository, updateOrderStatus, deleteItemFromOrder, createOrderInRepository } from "../repositories/order.repository.js";
+import { addItemToOrder, getOrdersFromRepository, updateOrderStatus, deleteItemFromOrder, createOrderInRepository, deleteOrderFromRepository } from "../repositories/order.repository.js";
 
 // Gets a list of all courses in the database
 export const getOrders = async function (req, res, next) {
@@ -70,3 +70,13 @@ export const createOrder = async (req, res) => {
       res.status(500).send(`failed to create order ${e.message}`);
     }
 };
+
+export const deleteOrder = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const order = await deleteOrderFromRepository({ _id: id });
+        res.status(200).send(order);
+    } catch(e) {
+        res.status(500).send(`${e.message} failed to delete order`);
+    }
+}

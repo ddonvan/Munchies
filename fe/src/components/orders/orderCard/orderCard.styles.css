@@ -23,6 +23,11 @@
     display: inline;
 }
 
+.order-delete {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .item-container {
     display: flex;
     align-items: center;

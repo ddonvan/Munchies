@@ -11,18 +11,18 @@ import { useData } from '../HomePage/HomePage';
 const CartPage = () => {
   
   const { cart } = useCart(); // Access cart state from the context
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
 
-  //Order Fetch
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const response = await axios.get(
-        'http://localhost:8000/orders',
-      );
-      setOrders(response.data);
-    };
-    fetchOrders();
-  }, []);
+  // //Order Fetch
+  // useEffect(() => {
+  //   const fetchOrders = async () => {
+  //     const response = await axios.get(
+  //       'http://localhost:8000/orders',
+  //     );
+  //     setOrders(response.data);
+  //   };
+  //   fetchOrders();
+  // }, []);
 
   return (
     <div>
@@ -35,7 +35,7 @@ const CartPage = () => {
           </li>
         ))}
       </ul>
-      <OrderList orders={orders}/>
+      <OrderList/>
     </div>
   );
 };

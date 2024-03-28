@@ -48,6 +48,15 @@ export const createOrderInRepository = async function (payload) {
     }
 };
 
+export const deleteOrderFromRepository = async function (query) {
+    try {
+        const deletedOrder = await Order.findOneAndDelete({ ...query });
+        return deletedOrder;
+    } catch (e) {
+        throw Error("Error deleting order");
+    }
+}
+
 export const updateOrderStatus = async function (orderId, body) {
     try {
         const updatedOrder = await Order.findByIdAndUpdate(

@@ -1,0 +1,17 @@
+/* Initially hide the default option */
+.default-option {
+    display: none;
+}
+
+/* Show the default option only when the select dropdown is not focused */
+.select-for-manager:not(:focus) + .default-option {
+    display: block;
+}
+
+.manager-page {
+    margin-left: 10px;
+}
+
+.addItem {
+    background-color: green;
+}

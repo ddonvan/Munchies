@@ -45,3 +45,23 @@
     justify-content: center; /* Align items horizontally in the center */
     align-items: center; /* Align items vertically in the center */
 }
+
+.customer-select-container{
+  color: white; /* Text color for the button */
+  border: none; /* Remove border */
+  cursor: pointer; /* Set cursor to pointer */
+  font-size: 16px; /* Adjust font size */
+  width: 80px;
+  height: 36px;
+  padding-left: 20px;
+}
+
+.manager-select-container{
+  color: white; /* Text color for the button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Set cursor to pointer */
+    font-size: 16px; /* Adjust font size */
+    width: 80px;
+    height: 36px;
+    padding-left: 20px;
+}

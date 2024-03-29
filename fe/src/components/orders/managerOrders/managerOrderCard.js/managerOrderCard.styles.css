@@ -1,0 +1,59 @@
+.manager-order-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 4px;
+    padding: 16px;
+    width: 330px;
+    /* overflow: hidden; */
+}
+.manager-order-container p {
+    margin-bottom: 6px;
+}
+.manager-order-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.manager-order-container li {
+    display: inline;
+}
+
+.manager-order-delete {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.item-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.item-image {
+    margin-right: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;    
+    box-shadow: 0 0 2px;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-info p {
+    margin-bottom: 0px;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.edit-button {
+    position: absolute;
+    bottom: 16px; /* Adjust the bottom spacing as needed */
+    right: 16px; /* Adjust the right spacing as needed */
+}

@@ -1,7 +1,8 @@
-import React from "react";
+import React,{ useState } from "react";
 import './orderCard.styles.css'
 import { useData } from "../../../pages/HomePage/DataContext";
 import Button from "react-bootstrap/Button";
+import  Modal  from "react-bootstrap/Modal";
 import axios from "axios";
 
 export const Order = ({ order, onDelete }) => {
@@ -10,21 +11,40 @@ export const Order = ({ order, onDelete }) => {
         items, pickup_time, status 
     } = order;
 
-    const { restaurants, menus } = useData();
+    const { restaurants, menus} = useData();
 
+    const [showModal, setShowModal] = useState(false);
+    //-------------------------
+    const [itemQuantities, setItemQuantities] = useState({});
+
+    const handleIncreaseQuantity = (itemId) => {
+        setItemQuantities(prevState => ({
+            ...prevState,
+            [itemId]: (prevState[itemId] || 1) + 1
+        }));
+    }
+
+    const handleDecreaseQuantity = (itemId) => {
+        setItemQuantities(prevState => ({
+            ...prevState,
+            [itemId]: Math.max((prevState[itemId] || 1) - 1, 0)
+        }));
+    }
+    //-------------------------
+
+    const handlePlaceClick = () => {
+        setShowModal(true);
+    }
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
     // find restaurant for order
     const restaurant = restaurants.find(restaurant => restaurant._id === restaurant_id);
 
-    console.log("Items: ", items )
+    console.log("Items: ", restaurant)
     console.log("Menu: ", menus)
-    // calculate subtotal
-    const subtotal = items.reduce((acc, item) => {
-        const menuItem = menus.find(menu => menu._id === item.item_id);
-        if (menuItem) {
-            acc += menuItem.price * item.quantity;
-        }
-        return acc;
-    }, 0);
+
 
     const handleDeleteOrder = async (order) => {
         try {
@@ -36,10 +56,40 @@ export const Order = ({ order, onDelete }) => {
         }
     }
 
+    const handlePlaceOrder = async (order) => {
+        try {
+            const updatedItems = items.map(item => ({
+                ...item,
+                quantity: itemQuantities[item._id] || item.quantity
+            }));
+
+            await axios.patch(`http://localhost:8000/orders/update/${order._id}`, {
+                items: updatedItems,
+                status: "In Progress"
+            });
+            setShowModal(false);
+            window.location.reload();
+        } catch (e) {
+            console.error("Error placing order:", e);
+        }
+    }
+
+    // calculate subtotal
+    const subtotal = items.reduce((acc, item) => {
+        const menuItem = menus.find(menu => menu._id === item.item_id);
+        const quantity = itemQuantities[item._id] || item.quantity;
+        if (menuItem) {
+            acc += menuItem.price * quantity;
+        }
+        return acc;
+    }, 0);
+
     return (
         <div className="order-container">
             <div className="order-delete">
+                {status !== "In Progress" && (
                 <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
+                )}  
             </div>
             <p>Order#: {order._id}</p>
             {restaurant && (
@@ -51,6 +101,8 @@ export const Order = ({ order, onDelete }) => {
             {items.map((item, index) => {
                     // Find the corresponding menu item for each item
                     const menuItem = menus.find(menu => menu._id === item.item_id);
+                    const quantity = itemQuantities[item._id] || item.quantity;
+                    const itemPrice = menuItem ? menuItem.price * quantity : 0;
                     return (
                         <li key={index}>
                             {menuItem && (
@@ -61,8 +113,14 @@ export const Order = ({ order, onDelete }) => {
                                         width="140"
                                     />
                                     <div className="item-info">
-                                        <p>{menuItem.item_name} x{item.quantity}</p>
-                                        <p className="price">${menuItem.price}.00</p>
+                                        <p>{menuItem.item_name} x {quantity}</p>
+                                        <p className="price">${itemPrice}.00</p>
+                                        {status !== "In Progress" && (
+                                            <div>
+                                                <Button variant="outline-primary" onClick={() => handleDecreaseQuantity(item._id)}>-</Button>{' '}
+                                                <Button variant="outline-primary" onClick={() => handleIncreaseQuantity(item._id)}>+</Button>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -70,9 +128,29 @@ export const Order = ({ order, onDelete }) => {
                     );
                 })}
             </ul>
-            <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
-            <h5>Pickup Time: {pickup_time}</h5>
-            <h5>Status: {status}</h5>
+            <div className="bottom-of-card">
+                <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
+                <h5>Pickup Time: {pickup_time}</h5>
+                <h5>Status: {status}</h5>
+                {status !== "In Progress" && (
+                    <Button className="place-order" variant="primary"
+                    onClick={handlePlaceClick}>Place Order</Button>
+                )}
+            </div>
+            <Modal className="modal-order" show={showModal} onHide={handleCloseModal}>
+                <Modal.Header>Order Confirmation</Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to place this order?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className="cancel-button" variant="secondary" onClick={handleCloseModal}>
+                        Cancel
+                    </Button>
+                    <Button className="yes-button" variant="primary" onClick={() => handlePlaceOrder(order)}>
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

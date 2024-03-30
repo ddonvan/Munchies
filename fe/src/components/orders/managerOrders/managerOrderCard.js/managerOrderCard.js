@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useData } from "../../../../pages/HomePage/DataContext";
 import Button from "react-bootstrap/Button";
+import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import "./managerOrderCard.styles.css";
 
-export const ManagerOrder = ({ order, onDelete }) => {
+export const ManagerOrder = ({ order, fetchOrders }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [itemStatus, setItemStatus] = useState(order.status);
     const {
         _id, customer_id, restaurant_id,
         items, pickup_time, status 
@@ -23,15 +26,48 @@ export const ManagerOrder = ({ order, onDelete }) => {
         return acc;
     }, 0);
 
-    const handleDeleteOrder = async (order) => {
-        try {
-            await axios.delete(`http://localhost:8000/orders/delete/order/${order._id}`);
-            console.log("Order deleted")
-            onDelete(order);
+    const handleEditClick = () => {
+        setShowModal(true); // Open Modal
+    };
+
+    const handleSaveClick = async () => {
+        try {            
+            await axios.patch(`http://localhost:8000/orders/update/${_id}`, { "status": itemStatus });
+            console.log("Item updated");
         } catch (e) {
-            console.error("Error deleting order:", e);
+            console.error("Error updating item:", e);
         }
+        fetchOrders();
+        setShowModal(false);
     }
+
+    const handleCloseModal = () => {
+        setItemStatus(status);
+        setShowModal(false); // Close Modal
+    };
+
+    const toggleStatus = () => {
+        switch (itemStatus) {
+            case "pending":
+                setItemStatus("in-progress");
+                break;
+            case "in-progress":
+                setItemStatus("awaiting-pickup");
+                break;
+            case "awaiting-pickup":
+                setItemStatus("completed");
+                break;
+            case "completed":
+                // Do nothing if already completed
+                break;
+            default:
+                setItemStatus("pending");
+                break;
+        }
+    };
+    
+    
+
 
     return (
         <div className="manager-order-container">
@@ -71,8 +107,29 @@ export const ManagerOrder = ({ order, onDelete }) => {
             <h5>Pickup Time: {pickup_time}</h5>
             <h5>Status: {status}</h5>
             <div className="edit-button">
-                <Button variant="primary" >Edit</Button>
+                <Button variant="primary" onClick={handleEditClick}>Edit</Button>
             </div>
+
+            {/* Modal for Menu Items */}
+            <Modal show={showModal} onHide={handleCloseModal} className="modal">
+                <Modal.Header closeButton>
+                    <Modal.Title>Order#: {_id}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h5>Status: {itemStatus}</h5>
+                    <button onClick={toggleStatus}>
+                        {itemStatus === "pending" ? "Start Processing" :
+                        itemStatus === "in-progress" ? "Ready for Pickup" :
+                        itemStatus === "awaiting-pickup" ? "Complete Pickup" :
+                        itemStatus === "completed" ? "Order Completed" : ""}
+                    </button>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleSaveClick}>
+                        Save
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }

@@ -50,14 +50,23 @@ function ManagerPage() {
       const setMenu = async () => {
         if(currentRest){
           const filteredMenus = menus.filter(menu => menu.rest_id === currentRest);
-            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest);
             setCurrentMenu(filteredMenus);
-            setCurrentOrders(filteredOrders);
       }
         
       };
       setMenu();
     }, [menus]);
+
+    useEffect(() => {
+      const setOrder = async () => {
+        if(currentRest){
+            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest);
+            setCurrentOrders(filteredOrders);
+      }
+        
+      };
+      setOrder();
+    }, [orders]);
 
     //Order Fetching
     useEffect(() => {
@@ -72,9 +81,19 @@ function ManagerPage() {
     fetchOrders()
 }, []);
 
+const fetchOrders = async () => {
+  try {
+      const response = await axios.get('http://localhost:8000/orders');
+      setOrders(response.data);
+  } catch (error) {
+      console.error('Error fetching orders:', error);
+  }
+};
+
     // useEffect hook for fetching orders (optional)
     useEffect(() => {
         fetchMenus();
+        fetchOrders();
     }, []);
 
     useEffect(() => {
@@ -191,7 +210,7 @@ function ManagerPage() {
 {currentOrders.length > 0 && (
   <div>
     <h2>Orders</h2>
-    <ManagerOrderList orders={currentOrders} />
+    <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
   </div>
 )}
 

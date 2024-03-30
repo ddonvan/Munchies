@@ -14,9 +14,6 @@ export const ManagerOrder = ({ order, onDelete }) => {
 
     // find restaurant for order
     const restaurant = restaurants.find(restaurant => restaurant._id === restaurant_id);
-
-    console.log("Items: ", items )
-    console.log("Menu: ", menus)
     // calculate subtotal
     const subtotal = items.reduce((acc, item) => {
         const menuItem = menus.find(menu => menu._id === item.item_id);

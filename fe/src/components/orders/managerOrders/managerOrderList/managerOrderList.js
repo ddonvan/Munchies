@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ManagerOrder } from "../managerOrderCard.js/managerOrderCard";
-import "./managerOrderList.styles.css";
+import "./managerOrderList.styles.css"
 
 export const ManagerOrderList = ({ orders }) => {
 

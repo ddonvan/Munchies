@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import React, { useState } from "react";
 import "./managerMenuCard.styles.css";
 
-export const ManagerMenu = ({ menu }) => {
+export const ManagerMenu = ({ menu, onDeleteMenuItem }) => {
     const [showModal, setShowModal] = useState(false);
     const [itemStatus, setItemStatus] = useState(menu.status); // Initialize itemStatus with the initial status from props
 
@@ -16,26 +16,32 @@ export const ManagerMenu = ({ menu }) => {
 
     const handleDeleteItem = async () => {
         try {
-            await axios.delete(`http://localhost:8000/menu/${_id}`);
+            await axios.delete(`http://localhost:8000/menus/${_id}`);
             console.log("Item deleted");
+            onDeleteMenuItem(menu); // Call onDeleteMenuItem with the deleted menu item
         } catch (e) {
             console.error("Error deleting item:", e);
         }
     };
+    
 
     const handleEditClick = () => {
         setShowModal(true); // Open Modal
     };
 
-    const handleCloseModal = async () => {
-        try {
-            console.log(_id);
-            
+    const handleSaveClick = async () => {
+        try {            
             await axios.patch(`http://localhost:8000/menus/${_id}`, { "status": itemStatus });
             console.log("Item updated");
         } catch (e) {
             console.error("Error updating item:", e);
         }
+
+        setShowModal(false);
+    }
+
+    const handleCloseModal = () => {
+        setItemStatus(status);
         setShowModal(false); // Close Modal
     };
 
@@ -69,7 +75,7 @@ export const ManagerMenu = ({ menu }) => {
                     </button>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
+                    <Button variant="secondary" onClick={handleSaveClick}>
                         Save
                     </Button>
                 </Modal.Footer>

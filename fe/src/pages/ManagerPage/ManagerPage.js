@@ -36,27 +36,28 @@ function ManagerPage() {
       fetchRestaurants();
     }, []);
   
-
-    useEffect(() => {
-      const fetchMenus = async () => {
+    //Menu fetching
+    const fetchMenus = async () => {
         const response = await axios.get(
           'http://localhost:8000/menus'
         );
         
         setMenus(response.data);
-        if(currentRest){
-            setMenu();
-        }
       };
-      fetchMenus();
-    }, [formData]);
 
+
+      useEffect(() => {
       const setMenu = async () => {
-        const filteredMenus = menus.filter(menu => menu.rest_id === currentRest);
+        if(currentRest){
+          const filteredMenus = menus.filter(menu => menu.rest_id === currentRest);
             const filteredOrders = orders.filter(order => order.restaurant_id === currentRest);
             setCurrentMenu(filteredMenus);
             setCurrentOrders(filteredOrders);
       }
+        
+      };
+      setMenu();
+    }, [menus]);
 
     //Order Fetching
     useEffect(() => {
@@ -70,6 +71,17 @@ function ManagerPage() {
     };
     fetchOrders()
 }, []);
+
+    // useEffect hook for fetching orders (optional)
+    useEffect(() => {
+        fetchMenus();
+    }, []);
+
+    useEffect(() => {
+        if (currentRest !== "") {
+            fetchMenus();
+        }
+    }, [currentRest]);
     
 
     //Manager Fetching
@@ -102,6 +114,12 @@ function ManagerPage() {
         setShowModal(false); // Close Modal
     };
 
+    // const handleDeleteMenuItem = (deletedItem) => {
+    //   const updatedMenus = menus.filter(item => item._id !== deletedItem._id);
+    //   setMenus(updatedMenus);
+    // };
+
+
     const handleSaveModal = async () => {
       const name = formData["name"];
       const category = formData["category"];
@@ -111,31 +129,19 @@ function ManagerPage() {
   
       try {            
           await axios.post(`http://localhost:8000/menus/`, 
-          { "rest_id": currentRest, 
-          "item_id": orders.length ,
-          "item_name": name,
-          "category": category,
-          "imageURL": image,
-          "price": price,
-          "frequency": 0, 
-          "status": availability });
+          { 
+              "rest_id": currentRest, 
+              "item_id": orders.length ,
+              "item_name": name,
+              "category": category,
+              "imageURL": image,
+              "price": price,
+              "frequency": 0, 
+              "status": availability 
+          });
           console.log("Item updated");
   
-          // Update the menus state variable
-          const updatedMenus = [...menus, {
-              rest_id: currentRest,
-              item_id: orders.length,
-              item_name: name,
-              category: category,
-              imageURL: image,
-              price: price,
-              frequency: 0,
-              status: availability
-          }];
-          setMenus(updatedMenus);
-  
-          // Update currentMenu
-          setMenu();
+          fetchMenus();
       } catch (e) {
           console.error("Error updating item:", e);
       }
@@ -149,14 +155,8 @@ function ManagerPage() {
       });
       setShowModal(false); // Close Modal
   };
-
-  const handleDeleteMenuItem = (deletedItem) => {
-    const updatedMenus = menus.filter(item => item._id !== deletedItem._id);
-    setMenus(updatedMenus);
-  };
-
   
-
+  
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -183,7 +183,7 @@ function ManagerPage() {
   {currentMenu.length > 0 && (
     <div>
         <h2>Menu Items <Button className='addItem' onClick={handleAddClick}>+</Button></h2>
-        <ManagerMenuList menus={currentMenu} onDeleteMenuItem={handleDeleteMenuItem}/>
+        <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} />
     </div>
 )}
 

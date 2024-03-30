@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import React, { useState } from "react";
 import "./managerMenuCard.styles.css";
 
-export const ManagerMenu = ({ menu, onDeleteMenuItem }) => {
+export const ManagerMenu = ({ menu, fetchMenus}) => {
     const [showModal, setShowModal] = useState(false);
     const [itemStatus, setItemStatus] = useState(menu.status); // Initialize itemStatus with the initial status from props
 
@@ -18,7 +18,7 @@ export const ManagerMenu = ({ menu, onDeleteMenuItem }) => {
         try {
             await axios.delete(`http://localhost:8000/menus/${_id}`);
             console.log("Item deleted");
-            onDeleteMenuItem(menu); // Call onDeleteMenuItem with the deleted menu item
+            fetchMenus();
         } catch (e) {
             console.error("Error deleting item:", e);
         }

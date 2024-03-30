@@ -3,7 +3,7 @@ import { ManagerMenu } from "../managerMenuCard/managerMenuCard";
 import Button from "react-bootstrap/Button";
 import "./managerMenuList.styles.css";
 
-export const ManagerMenuList = ({ menus, onDeleteMenuItem}) => {
+export const ManagerMenuList = ({ menus, fetchMenus }) => {
     
     const [localCart, setLocalCart] = useState({}); // Local state for handling UI updates
 
@@ -11,7 +11,7 @@ export const ManagerMenuList = ({ menus, onDeleteMenuItem}) => {
         <div className="managermenuList">
             {menus.map(menu => (
                 <div key={menu.item_name} className="menu-item">
-                    <ManagerMenu key={menu.item_name} menu={menu} onDeleteMenuItem={onDeleteMenuItem}/>  
+                    <ManagerMenu key={menu.item_name} menu={menu} fetchMenus={fetchMenus}/>  
         
                 </div>
             ))}

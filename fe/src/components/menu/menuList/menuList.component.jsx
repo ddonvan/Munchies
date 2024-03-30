@@ -49,7 +49,7 @@ export const MenuList = ({ menus }) => {
             try {
                 const response = await axios.post("http://localhost:8000/orders/", {
                     customer_id: "65fcd1c840fad7ac193174c5", //hard coded for default customer for now
-                    restaurant_id: menu.restaurant_id,
+                    restaurant_id: menu.rest_id,
                     items: [{ item_id: menu._id, quantity: 1}],
                     pickup_time: "pending", //subject to change
                     status: "pending"

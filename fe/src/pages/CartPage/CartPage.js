@@ -25,7 +25,7 @@ const CartPage = () => {
   // }, []);
 
   return (
-    <div>
+    <div style={{ marginTop: '100px' }}>
       <PageHeader/>
       <h2>Cart Overview</h2>
       <ul>

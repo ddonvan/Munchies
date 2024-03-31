@@ -18,7 +18,7 @@ export const Restaurant = ({ restaurant, menus }) => {
         setShowModal(false); // Close Modal
     }
     
-    const filteredMenus = menus.filter(menu => menu.rest_id === _id);
+    const filteredMenus = menus.filter(menu => menu.rest_id === _id && menu.status === "available");
     console.log("filtered:",filteredMenus);
 
     return (

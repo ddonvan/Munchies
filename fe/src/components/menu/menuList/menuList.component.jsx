@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu } from "../menuCard/menuCard.component";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
+import ToastContainer from 'react-bootstrap/ToastContainer';
 import './menuList.styles.css';
 import { useCart } from '../../../pages/CartPage/CartContext'; 
 import axios from "axios";
@@ -63,13 +64,24 @@ export const MenuList = ({ menus }) => {
     }
 
     return (
-        <div className="menuList">
-            <Toast show={showToast} onClose={() => setShowToast(false)}>
-                <Toast.Header>
-                    <strong className="order-info">Order Notification</strong>
+        <div className={`menuList ${showToast ? 'toast-visible' : ''}`}>
+            <ToastContainer
+                className="p-3 bg-opacity-50"
+                bg='success'
+                position={'top-center'}
+                style={{ zIndex: 1000 }} // ensure toast is above the background
+            >
+                <Toast show={showToast} onClose={() => setShowToast(false)} delay={5000} autohide>
+                <Toast.Header id="custom-toast" style={{ backgroundColor: 'rgba(220, 137, 74, 0.9)', color: 'white' }}>
+                    <strong className="order-info" style={{paddingRight:'170px'}}>Order Notification</strong>
                 </Toast.Header>
-                <Toast.Body>Item added to order!</Toast.Body>
-            </Toast>
+                <Toast.Body id="toast-body" style={{ backgroundColor: 'rgba(220, 137, 74, 0.5)', color: 'black'}}>
+                    Item added to order!
+                </Toast.Body>
+                </Toast>
+            </ToastContainer>
+
+
             {menus.map(menu => (
                 <div key={menu.item_name} className="menu-item">
                     <Menu key={menu.item_name} menu={menu}/>  

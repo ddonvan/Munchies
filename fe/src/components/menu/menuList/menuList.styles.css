@@ -39,3 +39,11 @@
     background-color: #ab6b3b;
 
 }
+
+.toast-body {
+    color: black;
+  }
+
+  .menuList.toast-visible {
+    margin-top: 100px; /* Adjust the value based on your design */
+}

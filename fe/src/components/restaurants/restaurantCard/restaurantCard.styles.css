@@ -37,7 +37,22 @@
     
 }
 
+.modal {
+    position: fixed; /* Fix the modal's position */
+    top: 50%; /* Center the modal vertically */
+    left: 50%; /* Center the modal horizontally */
+    transform: translate(-50%, -55%); /* Center the modal perfectly */
+    overflow-y: hidden; /* Enable vertical scrolling for the modal content */
+    max-height: 800px; /* Adjust the max height of the modal */
+  }
+
 .modal-dialog {
     max-width: 700px;
     margin: 80px auto;
 }
+
+.menu-items {
+    height: 520px; /* Adjust the height of the div */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+}
+ 

@@ -30,7 +30,12 @@ export const PageHeader = () => {
             </div>
             {/* Conditionally render the cart button only if the route is "/" */}
             {(location.pathname === "/" || location.pathname === "/cart") && (
-                <button onClick={handleCartButtonClick}>Cart</button>
+               <button onClick={handleCartButtonClick} style={{ width: '100px', borderRadius:'5px' }}>
+                Cart
+               <img 
+                src={require('./shopping-cart.png')} 
+                style={{ width: '30px', height: 'auto', marginLeft: '10px', zIndex:1 }}/>
+             </button>
             )}
         </nav>
     );

@@ -65,7 +65,7 @@ export const Order = ({ order, onDelete }) => {
 
             await axios.patch(`http://localhost:8000/orders/update/${order._id}`, {
                 items: updatedItems,
-                status: "In Progress"
+                status: "Ordered"
             });
             setShowModal(false);
             window.location.reload();
@@ -87,7 +87,7 @@ export const Order = ({ order, onDelete }) => {
     return (
         <div className="order-container">
             <div className="order-delete">
-                {status !== "In Progress" && (
+                {status === "pending" && (
                 <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
                 )}  
             </div>
@@ -115,7 +115,7 @@ export const Order = ({ order, onDelete }) => {
                                     <div className="item-info">
                                         <p>{menuItem.item_name} x {quantity}</p>
                                         <p className="price">${itemPrice}.00</p>
-                                        {status !== "In Progress" && (
+                                        {status === "pending" && (
                                             <div>
                                                 <Button variant="outline-primary" onClick={() => handleDecreaseQuantity(item._id)}>-</Button>{' '}
                                                 <Button variant="outline-primary" onClick={() => handleIncreaseQuantity(item._id)}>+</Button>
@@ -132,7 +132,7 @@ export const Order = ({ order, onDelete }) => {
                 <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
                 <h5>Pickup Time: {pickup_time}</h5>
                 <h5>Status: {status}</h5>
-                {status !== "In Progress" && (
+                {status === "pending" && (
                     <Button className="place-order" variant="primary"
                     onClick={handlePlaceClick}>Place Order</Button>
                 )}

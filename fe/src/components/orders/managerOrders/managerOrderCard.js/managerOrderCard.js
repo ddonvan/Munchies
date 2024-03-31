@@ -48,20 +48,20 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
 
     const toggleStatus = () => {
         switch (itemStatus) {
-            case "pending":
-                setItemStatus("in-progress");
+            case "Ordered":
+                setItemStatus("In Progress");
                 break;
-            case "in-progress":
-                setItemStatus("awaiting-pickup");
+            case "In Progress":
+                setItemStatus("Awaiting Pickup");
                 break;
-            case "awaiting-pickup":
-                setItemStatus("completed");
+            case "Awaiting Pickup":
+                setItemStatus("Completed");
                 break;
-            case "completed":
+            case "Completed":
                 // Do nothing if already completed
                 break;
             default:
-                setItemStatus("pending");
+                setItemStatus("Ordered");
                 break;
         }
     };
@@ -118,10 +118,10 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
                 <Modal.Body>
                     <h5>Status: {itemStatus}</h5>
                     <button onClick={toggleStatus}>
-                        {itemStatus === "pending" ? "Start Processing" :
-                        itemStatus === "in-progress" ? "Ready for Pickup" :
-                        itemStatus === "awaiting-pickup" ? "Complete Pickup" :
-                        itemStatus === "completed" ? "Order Completed" : ""}
+                        {itemStatus === "Ordered" ? "Start Processing" :
+                        itemStatus === "In Progress" ? "Ready for Pickup" :
+                        itemStatus === "Awaiting Pickup" ? "Complete Pickup" :
+                        itemStatus === "Completed" ? "Order Completed" : ""}
                     </button>
                 </Modal.Body>
                 <Modal.Footer>

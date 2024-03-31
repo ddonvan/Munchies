@@ -60,7 +60,7 @@ function ManagerPage() {
     useEffect(() => {
       const setOrder = async () => {
         if(currentRest){
-            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest);
+            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
             setCurrentOrders(filteredOrders);
       }
         
@@ -120,7 +120,7 @@ const fetchOrders = async () => {
         const restID = selectedManagerInfo["restaurant_id"];
         setCurrentRest(restID);
         const filteredMenus = menus.filter(menu => menu.rest_id === restID);
-        const filteredOrders = orders.filter(order => order.restaurant_id === restID);
+        const filteredOrders = orders.filter(order => order.restaurant_id === restID && order.status !== "pending");
         setCurrentMenu(filteredMenus);
         setCurrentOrders(filteredOrders);
       }

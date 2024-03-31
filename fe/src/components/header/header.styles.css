@@ -9,6 +9,9 @@
     justify-content: space-between; /* Align items at the edges */
     align-items: center; /* Center vertically */
     margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    z-index: 10;
   }
 
   .navbar h1 {
@@ -28,6 +31,10 @@
     font-size: 16px; /* Adjust font size */
     width: 80px;
     height: 36px;
+  }
+
+  .navbar button:hover {
+    background-color: #b56e36; /* Adjust the color as needed */
   }
 
   .home-btn {

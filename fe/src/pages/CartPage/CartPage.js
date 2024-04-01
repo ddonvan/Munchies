@@ -7,6 +7,7 @@ import { OrderList } from '../../components/orders/orderList/orderList.component
 import axios from 'axios';
 import { Order } from '../../components/orders/orderCard/orderCard.component';
 import { useData } from '../HomePage/HomePage';
+import './CartPage.styles.css' ;
 
 const CartPage = () => {
   
@@ -27,14 +28,16 @@ const CartPage = () => {
   return (
     <div style={{ marginTop: '100px' }}>
       <PageHeader/>
-      <h2>Cart Overview</h2>
-      <ul>
+        <div className='cart-overview'>
+          <h2 style={{textAlign: 'center', paddingBottom:'20px', paddingTop:'10px'}}>Cart Overview</h2>
+        </div>
+      {/* <ul>
         {Object.entries(cart).map(([itemId, quantity]) => (
           <li key={itemId}>
             Item ID: {itemId}, Quantity: {quantity}
           </li>
         ))}
-      </ul>
+      </ul> */}
       <OrderList/>
     </div>
   );

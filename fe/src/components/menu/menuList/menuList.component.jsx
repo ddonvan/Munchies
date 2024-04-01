@@ -86,11 +86,6 @@ export const MenuList = ({ menus }) => {
                 <div key={menu.item_name} className="menu-item">
                     <Menu key={menu.item_name} menu={menu}/>  
                     <div className="menu-item-actions">
-                        <div className="quantity-selector">
-                            <Button onClick={() => handleRemoveFromCart(menu._id)}>-</Button>
-                            <span>{localCart[menu._id] || 0}</span>
-                            <Button onClick={() => handleAddToCart(menu._id)}>+</Button>
-                        </div>
                         <Button onClick={() => {
                             handleCreateOrder(menu); 
                             setShowToast(true);

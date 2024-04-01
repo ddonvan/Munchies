@@ -45,7 +45,7 @@ export const Order = ({ order, onDelete }) => {
 
     const handleSelect = (time) => {
         setSelectedPickupTime(time);
-    }
+    };
     
 
     // find restaurant for order
@@ -72,7 +72,7 @@ export const Order = ({ order, onDelete }) => {
             await axios.patch(`http://localhost:8000/orders/update/${order._id}`, {
                 items: updatedItems,
                 pickup_time: selectedPickupTime,
-                status: "Ordered"
+                status: "In Progress"
             });
             setShowModal(false);
             window.location.reload();
@@ -90,6 +90,8 @@ export const Order = ({ order, onDelete }) => {
         }
         return acc;
     }, 0);
+
+    console.log(selectedPickupTime);
 
     return (
         <div className="order-container">
@@ -166,7 +168,11 @@ export const Order = ({ order, onDelete }) => {
                     
                 <div className="pickup-time">
                     <h5 style={{marginRight: '8px'}}>Pickup Time: </h5>
-                    <PickupDropdown onSelect={handleSelect} className="dropdown"/>
+                    {status === "pending" ? (
+                        <PickupDropdown onSelect={handleSelect} className="dropdown"/>
+                    ) : (
+                        <h5>{pickup_time}</h5>
+                    )}
                 </div>
                 
                 <div className="place-order-container ">

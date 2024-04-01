@@ -4,6 +4,7 @@ import { useData } from "../../../pages/HomePage/DataContext";
 import Button from "react-bootstrap/Button";
 import  Modal  from "react-bootstrap/Modal";
 import axios from "axios";
+import { PickupDropdown } from "./pickupDropdown.component";
 
 export const Order = ({ order, onDelete }) => {
     const {
@@ -14,6 +15,7 @@ export const Order = ({ order, onDelete }) => {
     const { restaurants, menus} = useData();
 
     const [showModal, setShowModal] = useState(false);
+    const [selectedPickupTime, setSelectedPickupTime] = useState('');
     //-------------------------
     const [itemQuantities, setItemQuantities] = useState({});
 
@@ -39,11 +41,14 @@ export const Order = ({ order, onDelete }) => {
     const handleCloseModal = () => {
         setShowModal(false);
     }
+
+    const handleSelect = (time) => {
+        setSelectedPickupTime(time);
+    }
+    
+
     // find restaurant for order
     const restaurant = restaurants.find(restaurant => restaurant._id === restaurant_id);
-
-    console.log("Items: ", restaurant)
-    console.log("Menu: ", menus)
 
 
     const handleDeleteOrder = async (order) => {
@@ -65,6 +70,7 @@ export const Order = ({ order, onDelete }) => {
 
             await axios.patch(`http://localhost:8000/orders/update/${order._id}`, {
                 items: updatedItems,
+                pickup_time: selectedPickupTime,
                 status: "Ordered"
             });
             setShowModal(false);
@@ -130,7 +136,10 @@ export const Order = ({ order, onDelete }) => {
             </ul>
             <div className="bottom-of-card">
                 <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
-                <h5>Pickup Time: {pickup_time}</h5>
+                <div className="pickup-time">
+                    <h5>Pickup Time: </h5>
+                    <PickupDropdown onSelect={handleSelect} className="dropdown"/>
+                </div>
                 <h5>Status: {status}</h5>
                 {status === "pending" && (
                     <Button className="place-order" variant="primary"

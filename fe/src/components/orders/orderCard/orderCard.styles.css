@@ -84,4 +84,12 @@
     width: 80px;
 }
 
+.pickup-time {
+    display: flex;
+}
+
+.dropdown {
+    height: 10px;
+    padding-left: 2px;
+}
 

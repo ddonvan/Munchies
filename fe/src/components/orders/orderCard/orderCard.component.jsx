@@ -72,7 +72,7 @@ export const Order = ({ order, onDelete }) => {
             await axios.patch(`http://localhost:8000/orders/update/${order._id}`, {
                 items: updatedItems,
                 pickup_time: selectedPickupTime,
-                status: "In Progress"
+                status: "Ordered"
             });
             setShowModal(false);
             window.location.reload();

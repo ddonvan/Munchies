@@ -186,7 +186,7 @@ const fetchOrders = async () => {
   
   
     return (
-<div className="ManagerPage">
+<div className="ManagerPage" style={{ marginTop: '100px' }}>
   <PageHeader />
   <div className="manager-page">
   <div className='combo-box'>

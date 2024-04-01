@@ -1,3 +1,10 @@
 .orderList {
     display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.orderList > .order-container:not(:last-child) {
+    margin-bottom: 10px; /* Add space between cards */
 }

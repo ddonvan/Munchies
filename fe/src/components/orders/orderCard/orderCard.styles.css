@@ -1,15 +1,19 @@
 .order-container {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgb(218, 218, 218);
+    border: 2px solid rgb(218, 218, 218);
     border-radius: 4px;
     padding: 16px;
     margin-bottom: 16px;
-    margin-left: 16px;
-    width: 330px;
-    /* overflow: hidden; */
+    width: calc(100% - 40px); /* Calculate the width of the container */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100vw - 40px); /* Limit the maximum width */
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box; /* Include padding in width calculation */
+    /* box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25); */
 }
+
 .order-container p {
     margin-bottom: 6px;
 }
@@ -44,24 +48,61 @@
 .item-info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1; /* Grow to fill available space */
+    padding-left: 10px; /* Add some space between image and item details */
+    padding-top: 30px;
 }
 
-.item-info p {
-    margin-bottom: 0px;
+.item {
+    margin-bottom: 10px; /* Add margin bottom to separate item details and price */
+    
+}
+
+.quantity-buttons {
+    display: flex;
+    align-items: center;
+    margin-left: 8px; /* Adjust the margin as needed */
+}
+
+.quantity-buttons > * {
+    margin-left: 4px; /* Adjust the margin between buttons */
+}
+
+.quantity-value {
+    margin: 0 10px; /* Adjust the margin as needed */
+}
+
+.quantity-price-container {
+    display: flex;
+    align-items: center;
 }
 
 .price {
-    font-weight: 600;
+    margin-left: auto;
+}
+
+.price-container {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+}
+
+.place-order-container {
+    text-align: center; /* Center horizontally */
+    margin-top: 30px; /* Adjust the margin as needed */
 }
 
 .place-order {
     border-color: #dc894a;
-    background-color: #dc894a;
+    color: #dc894a;
+    width: 200px;
+    height:50px;
+    border-width: 2px;
+    font-weight: bold; /* Make the text bold */
 }
-
 .place-order:hover {
-    background-color: #b9733e;
-    border-color: #b9733e;
+    background-color: #dc894a;
+    border-color: #dc894a;
+    color: white;
 }
 
 .place-order:active {
@@ -78,6 +119,20 @@
 
 .yes-button {
     width: 80px;
+    background-color: #dc894a;
+    border-color: #dc894a;
+}
+
+.yes-button:hover {
+    background-color: #00ab66; 
+    border-color: #00ab66;
+    color: white;
+}
+
+.yes-button:active {
+    background-color: #00ab66; 
+    border-color: #00ab66;
+    color: white;
 }
 
 .cancel-button {

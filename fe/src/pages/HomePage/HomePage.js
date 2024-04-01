@@ -37,12 +37,15 @@ function HomePage() {
           <PageHeader/>
             <img 
                   src={require('./header-image.jpg')} 
-                  style={{ maxWidth: '100%', height: '10%', marginTop: '-240px' }}/>
+                  style={{ 
+                    maxWidth: '100%', 
+                    height: '10%', 
+                    marginTop: '-240px'}} />
           <div className="container">
           <div className="orange-box">
             <div className="text">
               <h4>
-              Welcome to [Food Ordering Website]! <br />
+              Welcome to MUNCHIES! <br />
               Satisfy cravings in a tap. <br />
               Explore top restaurants below.
               </h4>
@@ -62,7 +65,7 @@ function HomePage() {
           </div>
           </div>
 
-          <div id="Restaurants" className='Restaurants'>
+          <div id='Restaurants' className='Restaurants'>
             <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px'}}>Restaurants</h2>
             <RestaurantList restaurants={restaurants} menus={menus}/>
           </div>

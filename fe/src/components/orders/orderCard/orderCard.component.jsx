@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import  Modal  from "react-bootstrap/Modal";
 import axios from "axios";
 import { PickupDropdown } from "./pickupDropdown.component";
+import { CloseButton } from 'react-bootstrap';
 
 export const Order = ({ order, onDelete }) => {
     const {
@@ -94,15 +95,15 @@ export const Order = ({ order, onDelete }) => {
         <div className="order-container">
             <div className="order-delete">
                 {status === "pending" && (
-                <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
+                <CloseButton onClick={() => handleDeleteOrder(order)} />
                 )}  
             </div>
-            <p>Order#: {order._id}</p>
             {restaurant && (
                 <div>
-                    <h5>{restaurant.name}</h5>
+                    <h3><strong>{restaurant.name}</strong></h3>
                 </div>
             )}
+            <p style={{paddingBottom:'15px'}}>Order#: {order._id}</p>
             <ul>
             {items.map((item, index) => {
                     // Find the corresponding menu item for each item
@@ -116,17 +117,37 @@ export const Order = ({ order, onDelete }) => {
                                     <img 
                                         src={menuItem.imageURL}
                                         className="item-image"
-                                        width="140"
+                                        width="200"
                                     />
                                     <div className="item-info">
-                                        <p>{menuItem.item_name} x {quantity}</p>
-                                        <p className="price">${itemPrice}.00</p>
-                                        {status === "pending" && (
-                                            <div>
-                                                <Button variant="outline-primary" onClick={() => handleDecreaseQuantity(item._id)}>-</Button>{' '}
-                                                <Button variant="outline-primary" onClick={() => handleIncreaseQuantity(item._id)}>+</Button>
-                                            </div>
-                                        )}
+                                        <div className="item">
+                                            <h4><strong>{menuItem.item_name}</strong></h4>
+                                            {status === "In Progress" && (
+                                                <div className="quantity-price-container">
+                                                    <div className="quantity">
+                                                        <h5>Quantity: {quantity}</h5>
+                                                    </div>
+                                                    <div className="price">
+                                                        <h5>${itemPrice}.00</h5>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            {status === "pending" && (
+                                                <div className="quantity-price-container">
+                                                     <div className="quantity">
+                                                        <h5>Quantity:</h5>
+                                                    </div>
+                                                    <div className="quantity-buttons">
+                                                        <Button variant="outline-primary" onClick={() => handleDecreaseQuantity(item._id)}>-</Button>
+                                                        <span className="quantity-value"><strong>{quantity}</strong></span>
+                                                        <Button variant="outline-primary" onClick={() => handleIncreaseQuantity(item._id)}>+</Button>
+                                                    </div>
+                                                    <div className="price">
+                                                        <h5>${itemPrice}.00</h5>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -135,16 +156,25 @@ export const Order = ({ order, onDelete }) => {
                 })}
             </ul>
             <div className="bottom-of-card">
-                <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
+                <hr style={{ width: '100%', height: '1px', backgroundColor: 'black', border: 'none', opacity: 1 }} />
+                
+                <div className="price-container">
+                    <h5>Subtotal: <strong>${subtotal.toFixed(2)}</strong></h5>
+                </div>
+
+                <h5 style={{paddingBottom:'10px'}}>Status: <strong>{status}</strong></h5>
+                    
                 <div className="pickup-time">
-                    <h5>Pickup Time: </h5>
+                    <h5 style={{marginRight: '8px'}}>Pickup Time: </h5>
                     <PickupDropdown onSelect={handleSelect} className="dropdown"/>
                 </div>
-                <h5>Status: {status}</h5>
-                {status === "pending" && (
-                    <Button className="place-order" variant="primary"
-                    onClick={handlePlaceClick}>Place Order</Button>
-                )}
+                
+                <div className="place-order-container ">
+                    {status === "pending" && (
+                        <Button className="place-order" variant="outline-primary"
+                        onClick={handlePlaceClick}>Place Order</Button>
+                    )}
+                </div>
             </div>
             <Modal className="modal-order" show={showModal} onHide={handleCloseModal}>
                 <Modal.Header>Order Confirmation</Modal.Header>

@@ -1,0 +1,26 @@
+.dropdown-toggle {
+    border-color: #dc894a;
+    background-color: #dc894a;
+    line-height: 1;
+    text-align: center;
+}
+
+.dropdown-toggle:hover {
+    background-color: #b9733e;
+    border-color: #b9733e;
+}
+
+.dropdown-toggle:active {
+    background-color: #dc894a !important;
+    border-color: #dc894a !important;
+}
+
+.dropdown-toggle:focus {
+    outline: none;
+    background-color: #dc894a;
+}
+
+.dropdown-menu {
+    max-height: 180px;
+    overflow-y: scroll;
+}

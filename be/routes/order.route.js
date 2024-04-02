@@ -1,5 +1,5 @@
 import express from "express";
-import { getOrders, getOrder, createOrder, addOrderItem, updateStatus, deleteOrderItem } from "../controllers/order.controller.js";
+import { getOrders, getOrder, createOrder, addOrderItem, updateStatus, deleteOrderItem, deleteOrder } from "../controllers/order.controller.js";
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ router.post("/", createOrder);
 router.patch("/add/:id", addOrderItem);
 router.patch("/delete/:id", deleteOrderItem);
 router.patch("/update/:id", updateStatus);
+router.delete("/delete/order/:id", deleteOrder);
 
 export default router;

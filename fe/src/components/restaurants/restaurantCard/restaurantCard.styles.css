@@ -7,12 +7,18 @@
     padding: 16px;
     padding-bottom: 120px;
     width: 260px;
-
+    transition: transform 0.5s ease; /* Add a smooth transition effect */
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
-    .restaurant-container h3 {
-        font-family: Helvetica;
-        font-weight: 400;
-    }
+
+.restaurant-container:hover {
+    transform: scale(1.1); /* Increase size by 10% on hover */
+}
+
+.restaurant-container h3 {
+    font-family: Helvetica;
+    font-weight: 400;
+}
 
 .order-button {
     position: absolute;
@@ -21,6 +27,7 @@
     width: 100px;
     border-color: #dc894a;
     color: #dc894a;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 .order-button:hover {
@@ -37,7 +44,29 @@
     
 }
 
+.modal {
+    position: fixed; /* Fix the modal's position */
+    top: 50%; /* Center the modal vertically */
+    left: 50%; /* Center the modal horizontally */
+    transform: translate(-50%, -55%); /* Center the modal perfectly */
+    overflow-y: hidden; /* Enable vertical scrolling for the modal content */
+    max-height: 800px; /* Adjust the max height of the modal */
+  }
+
 .modal-dialog {
     max-width: 700px;
     margin: 80px auto;
+}
+
+.menu-items {
+    height: 520px; /* Adjust the height of the div */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+}
+ 
+.searchBar-container {
+    flex: 1; /* Take up remaining space */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Align items horizontally in the center */
+    align-items: center; /* Align items vertically in the center */
+    border: 1px solid black;
 }

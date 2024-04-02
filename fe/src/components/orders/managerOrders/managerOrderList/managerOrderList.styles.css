@@ -1,0 +1,15 @@
+.managerorderList {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px; /* Add some padding */
+}
+
+.managerorderList > * {
+    min-width: 380px; /* Set minimum width for ManagerOrder items */
+    flex-shrink: 0; /* Prevent ManagerOrder items from shrinking */
+    margin-right: 10px; /* Add some space between items */
+}
+
+.managerorderList > *:last-child {
+    margin-right: 0; /* Remove margin from the last item */
+}

@@ -19,3 +19,79 @@
   .App-link {
     color: #61dafb;
   }
+
+  .container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+  .orange-box {
+    background-color: #dc894a;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 5;
+    max-width: 90%; /* Set maximum width */
+    width: 450px; /* Set initial width */
+    height: 200px;
+    margin-top: -400px; /* Adjust margin-top to position higher */
+    margin-left: auto;
+    margin-right: auto;
+    position: relative; /* Position relative to its container */
+    top: 50%; /* Move down by 50% of container height */
+    transform: translateY(-50%); /* Center vertically */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    opacity: 93%;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .text {
+    margin-bottom: 20px; /* Adjust spacing between text and SVG */
+  }
+  
+  .svg-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  body {
+    scroll-behavior: smooth;
+  }
+
+  .Restaurants {
+    text-align: center;
+    padding-bottom: 50px;
+  }
+  
+  .Restaurants h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .Restaurants h2::before,
+  .Restaurants h2::after {
+    content: '';
+    position: absolute;
+    top: 45%; /* Adjust the position of the lines */
+    width: 50px;
+    height: 2px;
+    background-color: #000000;
+  }
+  
+  .Restaurants h2::before {
+    left: -60px; /* Adjust the distance of the left line */
+    transform: translateY(-50%);
+  }
+  
+  .Restaurants h2::after {
+    right: -60px; /* Adjust the distance of the right line */
+    transform: translateY(-50%);
+  }
+  

@@ -1,0 +1,17 @@
+.analyticspage{
+    background: #dc894a;
+    margin: 40px;
+    padding: 20px;
+}
+
+.analyticstitle{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 40px;
+    
+    font-size: 30px;
+}
+
+.orderFreq{
+    background-color: #fff;
+}

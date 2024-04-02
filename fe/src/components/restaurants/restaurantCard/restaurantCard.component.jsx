@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './restaurantCard.styles.css'
 import { MenuList } from "../../menu/menuList/menuList.component";
+import { SearchBar } from "../../searchBar/searchBar.component";
 
 export const Restaurant = ({ restaurant, menus }) => {
     const { _id, name, address, imageURL } = restaurant; //components of restaurant model
@@ -38,6 +39,8 @@ export const Restaurant = ({ restaurant, menus }) => {
             <Modal show={showModal} onHide={handleCloseModal} className="modal" scrollable>
                 <Modal.Header closeButton>
                     <Modal.Title>{name} Items</Modal.Title>
+                    <div className="searchBar-container"><SearchBar className="searchBar" placeholder="Search"/></div>
+                    
                 </Modal.Header>
                 <Modal.Body>
                     <div className="menu-items">

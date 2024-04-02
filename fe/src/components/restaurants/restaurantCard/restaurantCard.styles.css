@@ -63,3 +63,10 @@
     overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
 }
  
+.searchBar-container {
+    flex: 1; /* Take up remaining space */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Align items horizontally in the center */
+    align-items: center; /* Align items vertically in the center */
+    border: 1px solid black;
+}

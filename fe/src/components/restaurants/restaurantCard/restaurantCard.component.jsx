@@ -63,7 +63,9 @@ export const Restaurant = ({ restaurant, menus }) => {
             <Modal show={showModal} onHide={handleCloseModal} className="modal" scrollable>
                 <Modal.Header closeButton>
                     <Modal.Title>{name} Items</Modal.Title>
-                    <div className="searchBar-container"><SearchBar className="searchBar" placeholder="Search" handleInput={handleInput}/></div>
+                    <div id="menuSearch" className="searchbarContainer">
+                        <SearchBar placeholder='Search' id="menu-search" handleInput={handleInput}/>
+                    </div>
                     
                 </Modal.Header>
                 <Modal.Body>

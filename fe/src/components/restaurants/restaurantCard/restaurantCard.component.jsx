@@ -64,7 +64,7 @@ export const Restaurant = ({ restaurant, menus }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>{name} Items</Modal.Title>
                     <div id="menuSearch" className="searchbarContainer">
-                        <SearchBar placeholder='Search' id="menu-search" />
+                        <SearchBar placeholder='Search' id="menu-search" handleInput={handleInput}/>
                     </div>
                     
                 </Modal.Header>

@@ -6,11 +6,13 @@ import ToastContainer from 'react-bootstrap/ToastContainer';
 import './menuList.styles.css';
 import { useCart } from '../../../pages/CartPage/CartContext'; 
 import axios from "axios";
+import { useCustomerId } from "../../../pages/HomePage/CustomerContext";
 
 export const MenuList = ({ menus }) => {
     const { addToCart, removeFromCart } = useCart(); // Access addToCart and removeFromCart functions from the context
     const [localCart, setLocalCart] = useState({}); // Local state for handling UI updates
-
+    const { customerId } = useCustomerId();
+    
     const handleAddToCart = (itemId) => {
         setLocalCart(prevLocalCart => ({
             ...prevLocalCart,
@@ -49,7 +51,7 @@ export const MenuList = ({ menus }) => {
             // If order doesn't exist, create new order
             try {
                 const response = await axios.post("http://localhost:8000/orders/", {
-                    customer_id: "65fcd1c840fad7ac193174c5", //hard coded for default customer for now
+                    customer_id: customerId, //hard coded for default customer for now
                     restaurant_id: menu.rest_id,
                     items: [{ item_id: menu._id, quantity: 1}],
                     pickup_time: "pending", //subject to change

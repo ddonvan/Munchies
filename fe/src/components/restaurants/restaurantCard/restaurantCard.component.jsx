@@ -10,6 +10,14 @@ export const Restaurant = ({ restaurant, menus }) => {
     const { _id, name, address, imageURL } = restaurant; //components of restaurant model
 
     const [ showModal, setShowModal] = useState(false);
+    const [searchInput, setSearchInput] = useState("");
+    const [filteredMenus, setFilteredMenus] = useState([]);
+    const [restMenus, setRestMenus] = useState([]);
+
+    useEffect(() => {
+        setRestMenus(menus.filter(menu => menu.rest_id === _id && menu.status === "available"));
+    }, [_id, menus]);
+    
 
     const handleOrderClick = () => {
         setShowModal(true); // Open Modal
@@ -19,8 +27,24 @@ export const Restaurant = ({ restaurant, menus }) => {
     const handleCloseModal = () => {
         setShowModal(false); // Close Modal
     }
+
+    useEffect(() => {
+        let filtered = [];
+        if (searchInput === "") {
+            filtered = restMenus
+        } else {
+            filtered = restMenus.filter(menu => 
+              menu.item_name.toLowerCase().includes(searchInput.toLowerCase())  
+            );
+        }
+        setFilteredMenus(filtered);
+    }, [restMenus, searchInput]);
+
+    const handleInput = e => {
+        setSearchInput(e.target.value)
+      };
     
-    const filteredMenus = menus.filter(menu => menu.rest_id === _id && menu.status === "available");
+    
     console.log("filtered:",filteredMenus);
 
     return (
@@ -39,7 +63,9 @@ export const Restaurant = ({ restaurant, menus }) => {
             <Modal show={showModal} onHide={handleCloseModal} className="modal" scrollable>
                 <Modal.Header closeButton>
                     <Modal.Title>{name} Items</Modal.Title>
-                    <div className="searchBar-container"><SearchBar className="searchBar" placeholder="Search"/></div>
+                    <div id="menuSearch" className="searchbarContainer">
+                        <SearchBar placeholder='Search' id="menu-search" handleInput={handleInput}/>
+                    </div>
                     
                 </Modal.Header>
                 <Modal.Body>

@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import "./managerOrderCard.styles.css";
+import edit from '../pencil.png'
 
 export const ManagerOrder = ({ order, fetchOrders }) => {
     const [showModal, setShowModal] = useState(false);
@@ -74,7 +75,13 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
             {/* <div className="order-delete">
                 <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
             </div> */}
-            <p>Order#: {order._id}</p>
+            <div className="subtotal">
+                <div className="ordersubtitle"> Order #:  </div>
+                <div className="orderssubresult">{order._id} </div>
+        
+                
+            </div>
+           
             {restaurant && (
                 <div>
                     <h5>{restaurant.name}</h5>
@@ -90,12 +97,12 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
                                 <div className="item-container">
                                     <img 
                                         src={menuItem.imageURL}
-                                        className="item-image"
+                                        className="orderitem-image"
                                         width="140"
                                     />
-                                    <div className="item-info">
+                                    <div className="orderitem-info">
                                         <p>{menuItem.item_name} x{item.quantity}</p>
-                                        <p className="price">${menuItem.price}.00</p>
+                                        <p className="orderprice">${menuItem.price}.00</p>
                                     </div>
                                 </div>
                             )}
@@ -103,11 +110,32 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
                     );
                 })}
             </ul>
-            <h5>Subtotal: ${subtotal.toFixed(2)}</h5>
-            <h5>Pickup Time: {pickup_time}</h5>
-            <h5>Status: {status}</h5>
-            <div className="edit-button">
-                <Button variant="primary" onClick={handleEditClick}>Edit</Button>
+            <div className="subtotal">
+                <div className="ordersubtitle"> Subtotal:  </div>
+              
+                <div className="orderssubresult">${subtotal.toFixed(2)} </div>
+            </div>
+            
+            <div className="subtotal">
+                <div className="ordersubtitle"> Pickup Time:  </div>
+                <div className="orderssubresult">{pickup_time} </div>
+        
+                
+            </div>
+
+            <div className="subtotal">
+                <div className="ordersubtitle"> Status:  </div>
+                <div className="orderssubresult">{status} </div>
+        
+                
+            </div>
+
+           
+            
+            <div className="orderedit-button">
+                <Button variant="outline-secondary" onClick={handleEditClick}>
+                <img src={edit} alt="image placeholder text" className="pencil" />
+                </Button>
             </div>
 
             {/* Modal for Menu Items */}

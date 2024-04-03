@@ -10,7 +10,7 @@ export const ManagerMenuList = ({ menus, fetchMenus }) => {
     return (
         <div className="managermenuList">
             {menus.map(menu => (
-                <div key={menu.item_name} className="menu-item">
+                <div key={menu.item_name} className="managermenu-item">
                     <ManagerMenu key={menu.item_name} menu={menu} fetchMenus={fetchMenus}/>  
         
                 </div>

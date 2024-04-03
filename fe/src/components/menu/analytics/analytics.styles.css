@@ -1,0 +1,79 @@
+.analyticspage{
+    background: #dc894a;
+    margin-left: 30px;
+    margin-right: 40px;
+    margin-bottom: 70px;
+    padding-left: 70px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: solid;
+    border-color: #935a2e;
+    border-radius: 4px;
+
+}
+
+.row1, .row2{
+    display: flex; /* Use flexbox */
+ 
+}
+.analyticstitle{
+    text-align: center;
+    font-weight: bold;
+    padding-top: 50px;
+    
+    font-size: 40px;
+}
+.orderFreq, .custFreq {
+    background-color: #fff;
+    width: 340px;
+    height: 200px;
+    padding: 10px;
+    margin-left: 10px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+}
+
+.timeFreq{
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    
+    margin-top:-90px;
+    width: 690px;
+    height: 300px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+}
+
+.itemFreq{
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 10px;
+    width: 500px;
+    height: 300px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+}
+
+.plot-container {
+    padding: 0;
+    width: 100%; /* Adjust the width as needed */
+}
+
+.orderFreqTitle, .custFreqTitle, .timeFreqTitle, .itemFreqTitle, .revenueTitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.orderFreqVal, .custFreqVal, .revenueValue {
+    font-size: 70px;
+    font-weight: bold;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.revenue{
+    background: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 500px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+}

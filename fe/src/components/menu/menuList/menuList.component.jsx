@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu } from "../menuCard/menuCard.component";
+import { Menu } from "../managerMenu/managerMenuCard/menuCard/menuCard.component";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from 'react-bootstrap/ToastContainer';

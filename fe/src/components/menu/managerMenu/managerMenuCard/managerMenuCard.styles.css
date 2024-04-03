@@ -21,12 +21,15 @@
 
 
 .menuedit-button{
-    margin-right: 800px;
+    margin-left: 8px;
     margin-top: -40px;
+  
 }
 
-.item-delete {
+.menuitem-delete {
     margin-left: 165px;
+    padding-top: 10px;
+    z-index: 1;
 }
 
 .pencil, .delete {
@@ -53,5 +56,5 @@
 
 .menu-item-image{
     border-radius: 4px;
-    padding-top: 7px;
+    margin-top: 7px;
 }

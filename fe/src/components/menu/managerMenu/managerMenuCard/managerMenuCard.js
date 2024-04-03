@@ -53,7 +53,13 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
 
     return (
         <div className="managermenu-container">
-            <div className="item-delete">
+            
+            <img src={imageURL} alt="image placeholder text" className="menu-item-image" />
+            <hr class="line"></hr>
+            <div className="itemname">{item_name}</div>
+            <div className="itemprice">${price}.00</div>
+
+            <div className="menuitem-delete">
                 <Button variant="outline-danger" onClick={() => handleDeleteItem(menu)}>
                 <img src={remove} alt="image placeholder text" className="delete"></img>
                 </Button>
@@ -63,10 +69,6 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
                     <img src={edit} alt="image placeholder text" className="pencil" />
                 </Button>
             </div>
-            <img src={imageURL} alt="image placeholder text" className="menu-item-image" />
-            <hr class="line"></hr>
-            <div className="itemname">{item_name}</div>
-            <div className="itemprice">${price}.00</div>
             
 
             {/* Modal for Menu Items */}

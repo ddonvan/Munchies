@@ -91,3 +91,8 @@
   color: #dc894a;
   font-weight: bold;
 }
+
+.theAnchors{
+  display: flex;
+  gap: 15px;
+}

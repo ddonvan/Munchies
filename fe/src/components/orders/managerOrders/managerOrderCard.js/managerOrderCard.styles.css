@@ -61,6 +61,22 @@
 }
 
 .orderedit-button {
-    right: -180px; /* Adjust the right spacing as needed */
+
+    margin-left: 295px; /* Adjust the right spacing as needed */
     z-index: 1;
+}
+
+.ordersubtitle{
+    font-weight: bold;
+    padding-right: 10px;
+    font-size: 20px;
+}
+
+.orderssubresult{
+    font-size: 18px;
+    padding-top: 2px;
+}
+
+.subtotal{
+    display: flex;
 }

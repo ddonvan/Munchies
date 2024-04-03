@@ -22,9 +22,12 @@
     font-weight: bold;
     font-size: 40px;
     padding-bottom: 15px;
-    padding-top: 20px
+    padding-top: 90px;
 }
 
+.entireOrders, .entireAnalytics{
+    padding-top: 100px;
+}
 .menuItemsContainer, .ordersContainer{
     border: solid;
     padding: 20px;
@@ -33,4 +36,45 @@
     border-radius: 3px;
    
     border-color: rgb(198, 198, 198);
+}
+
+.Welcome{
+    color: white;
+    width: 100%;
+    text-align: center;
+    height: 260px;
+    font-size: 20px;
+    background-color:hsla(18,21%,76%,1);
+   
+}
+
+.firstline{
+    display: flex;
+    justify-content: center;
+
+    padding-top: 60px;
+    gap: 15px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.secondline{
+    font-weight: bold;
+    padding-top: -200px;
+}
+
+.thirdline{
+    font-weight: bold;
+
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+.ordersAnchor{
+    padding-top: -200px;
+}
+
+.combo-box{
+    border-radius: 5px;
+    background-color: DodgerBlue;
 }

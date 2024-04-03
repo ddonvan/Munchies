@@ -1,12 +1,13 @@
 import { PageHeader } from '../../components/header/header.component';
 import { ManagerMenuList } from '../../components/menu/managerMenu/managerMenuList/managerMenuList';
 import { ManagerOrderList } from '../../components/orders/managerOrders/managerOrderList/managerOrderList';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import './ManagerPage.styles.css' ;
 import { Analytics } from '../../components/menu/analytics/analytics.component';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function ManagerPage() {
     const [restaurants, setRestaurants] = useState([]);
@@ -24,6 +25,12 @@ function ManagerPage() {
         price: "",
         availability: ""
     });
+    const [selectedManagerName, setSelectedManagerName] = useState("Select Manager");
+    const ordersRef = React.useRef(null);
+    const menuRef = React.useRef(null);
+    const analyticsRef = React.useRef(null);
+
+
 
     
     //Restaurant fetching
@@ -115,16 +122,16 @@ const fetchOrders = async () => {
         fetchManagers();
       }, []);
 
-      const handleManagerSelect = (e) => {
-        const selectedManagerId = e.target.selectedIndex-1;
-        const selectedManagerInfo = managers[selectedManagerId];
-        const restID = selectedManagerInfo["restaurant_id"];
+      const handleManagerSelect = (selectedManager) => {
+        const restID = selectedManager.restaurant_id;
         setCurrentRest(restID);
         const filteredMenus = menus.filter(menu => menu.rest_id === restID);
         const filteredOrders = orders.filter(order => order.restaurant_id === restID && order.status !== "pending");
         setCurrentMenu(filteredMenus);
         setCurrentOrders(filteredOrders);
-      }
+        setSelectedManagerName(`${selectedManager.firstName} ${selectedManager.lastName}`);
+    };
+    
 
       const handleAddClick = () => {
         setShowModal(true); // Open Modal
@@ -184,25 +191,41 @@ const fetchOrders = async () => {
             [name]: value
         });
     };
+
+    
   
   
     return (
-<div className="ManagerPage" style={{ marginTop: '100px' }}>
-  <PageHeader />
+        <div className="ManagerPage" style={{ marginTop: '80px' }}>
+        <div className='Welcome'>
+            <div className='firstline'>
+                Welcome
+                <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                    {selectedManagerName}
+                </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        {managers.map((entry, index) => (
+                            <Dropdown.Item key={index} onClick={() => handleManagerSelect(entry)}>
+
+                                {entry.firstName} {entry.lastName}
+                            </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
+                to your dashboard!
+            </div>
+            <div className='thirdline'>Manage menus, monitor orders, approve requests, and track insights all in one place.</div>
+        </div>
+
+
+  <PageHeader menuRef={menuRef}  ordersRef={ordersRef}  analyticsRef={analyticsRef}  />
   <div className="manager-page">
-  <div className='combo-box'>
-    <select name="select-for-manager" onChange={handleManagerSelect}>
-      <option value="default" className="default-option">Select Manager</option>
-      {managers.map((entry, index) => (
-        <option key={index}>{entry.firstName} {entry.lastName}</option>
-      ))}
-    </select>
-    <br />
-    <br />
-  </div>
+  
   {currentMenu.length > 0 && (
     <div>
-        <div className='menuTitle'>Menu Items </div>
+        <div className='menuTitle' ref={menuRef}>Menu Items </div>
         <div className='menuItemsContainer'>
           <Button className='addItem' onClick={handleAddClick}>Add Menu Item</Button>
           <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} /></div>
@@ -212,7 +235,7 @@ const fetchOrders = async () => {
 
 
 {currentOrders.length > 0 && (
-  <div>
+  <div className='entireOrders' ref={ordersRef}>
     <div className='ordersTitle'>Orders</div>
     <div className='ordersContainer'>
     <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
@@ -223,7 +246,10 @@ const fetchOrders = async () => {
   </div>
 
   {currentRest && (
-  <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu} />
+    <div className='entireAnalytics' ref={analyticsRef}>
+       <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu} />
+    </div>
+ 
 )}
 
   <Modal show={showModal} onHide={handleCloseModal} className="modal">

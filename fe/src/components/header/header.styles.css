@@ -1,25 +1,36 @@
 .navbar {
-    /* position: absolute; Fixed position */
-    top: 0; /* Position at the top of the page */
-    width: 100%; /* Full width */
-    background-color: #0b161a; /* Background color for the navigation bar */
-    color: #ebebf1; /* Text color */
-    padding: 20px; /* Padding for the content */
-    display: flex; /* Set display to flex */
-    justify-content: space-between; /* Align items at the edges */
-    align-items: center; /* Center vertically */
-    margin-bottom: 20px;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-  }
+  width: 100%;
+  background-color: transparent; /* Make the navbar transparent */
+  color: #ebebf1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Make the navbar fixed */
+  top: 0;
+  z-index: 10;
+  font-weight: bold;
+  
+}
+.cart-page {
+  background-color: #0b161a; /* Change the background color */
+}
+.navbar.scrolled {
+  background-color: #0b161a; /* Change background color when scrolled */
+}
+
+.navbar {
+  transition: background-color 0.3s ease;
+  gap: 20px;
+}
 
   .navbar h1 {
     font-size: 24px; /* Adjust the font size */
-    font-family:sans-serif;
+    font-family: 'roboto';
     padding-top: 7px;
     padding-bottom: 7px;
     font-weight: bold;
+    
 
   }
 
@@ -31,6 +42,7 @@
     font-size: 16px; /* Adjust font size */
     width: 80px;
     height: 36px;
+    gap: 20px;
   }
 
   .navbar button:hover {

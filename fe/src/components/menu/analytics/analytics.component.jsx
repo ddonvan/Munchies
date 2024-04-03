@@ -76,8 +76,36 @@ export const Analytics = ({ orders, menus, currentMenu }) => {
         width: 480,
         height: 250,
         xaxis: {
-            title: '# of Orders'
+            title: {
+                text: '# of Orders',
+                font: {
+                    family: "Karla",
+                    size: 16, // Adjust the font size as needed
+                    color: 'black' // Adjust the font color as needed
+                }
+            },
+            tickfont: {
+                family: "Karla",
+                size: 12, // Adjust the font size as needed
+                color: 'black' // Adjust the font color as needed
+            }
+            
         },
+        yaxis: {
+            
+                font: {
+                    family: "Karla",
+                    size: 16, // Adjust the font size as needed
+                    color: 'black' // Adjust the font color as needed
+                
+            },
+            tickfont: {
+                family: "Karla",
+                size: 12, // Adjust the font size as needed
+                color: 'black' // Adjust the font color as needed
+            }
+        },
+        
     };
 
     const timeData = [{
@@ -96,10 +124,34 @@ export const Analytics = ({ orders, menus, currentMenu }) => {
             pad: 4
         },
         xaxis: {
-            title: 'Pickup Time'
+            title: {
+                text: 'Pickup Time',
+                font: {
+                    family: "Karla",
+                    size: 16, // Adjust the font size as needed
+                    color: 'black' // Adjust the font color as needed
+                }
+            },
+            tickfont: {
+                family: "Karla",
+                size: 12, // Adjust the font size as needed
+                color: 'black' // Adjust the font color as needed
+            }
         },
         yaxis: {
-            title: '# of Orders'
+            title: {
+                text: '# of Orders',
+                font: {
+                    family: "Karla",
+                    size: 16, // Adjust the font size as needed
+                    color: 'black' // Adjust the font color as needed
+                }
+            },
+            tickfont: {
+                family: "Karla",
+                size: 12, // Adjust the font size as needed
+                color: 'black' // Adjust the font color as needed
+            }
         },
         width: 650,
         height: 250

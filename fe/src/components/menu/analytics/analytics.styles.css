@@ -1,5 +1,5 @@
 .analyticspage{
-    background: #dc894a;
+    background: #0b161ad1;
     margin-left: 30px;
     margin-right: 40px;
     margin-bottom: 70px;
@@ -7,8 +7,10 @@
     padding-top: 50px;
     padding-bottom: 50px;
     border: solid;
-    border-color: #935a2e;
+    border-color: #0b161a;
     border-radius: 4px;
+    font-family: "Karla", sans-serif;
+
 
 }
 
@@ -30,6 +32,7 @@
     padding: 10px;
     margin-left: 10px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 3px;
 }
 
 .timeFreq{
@@ -41,6 +44,7 @@
     width: 690px;
     height: 300px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 3px;
 }
 
 .itemFreq{
@@ -50,6 +54,7 @@
     width: 500px;
     height: 300px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 3px;
 }
 
 .plot-container {
@@ -76,4 +81,5 @@
     padding: 10px;
     width: 500px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 3px;
 }

@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import './ManagerPage.styles.css' ;
 import { Analytics } from '../../components/menu/analytics/analytics.component';
 import Dropdown from 'react-bootstrap/Dropdown';
+import header from './restaurant.jpg';
 
 function ManagerPage() {
     const [restaurants, setRestaurants] = useState([]);
@@ -196,9 +197,16 @@ const fetchOrders = async () => {
   
   
     return (
-        <div className="ManagerPage" style={{ marginTop: '80px' }}>
-        <div className='Welcome'>
-            <div className='firstline'>
+        <div className="ManagerPage" >
+          <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"></link>   
+
+<div className='Welcome' >
+        
+        <div className='background-image'></div>
+        <div className='text-content'>
+        <div className='firstline'>
                 Welcome
                 <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
@@ -214,9 +222,13 @@ const fetchOrders = async () => {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                to your dashboard!
+                to your Manager Hub.
             </div>
             <div className='thirdline'>Manage menus, monitor orders, approve requests, and track insights all in one place.</div>
+
+        </div>
+
+            
         </div>
 
 

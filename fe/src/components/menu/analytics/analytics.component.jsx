@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './analytics.styles.css';
+import Plot from "react-plotly.js";
 
 export const Analytics = ({ orders, menus, currentMenu }) => {
     // Calculate the total number of orders
@@ -48,32 +49,77 @@ export const Analytics = ({ orders, menus, currentMenu }) => {
         pickupTimeFrequency[pickup_time] += 1;
     });
 
+    const data = [{
+        type: 'bar',
+        x: itemFrequency.map(item => item.count),
+        y: itemFrequency.map(item => item.itemName),
+        orientation: 'h'
+    }];
+    
     return (
         <div>
             <div className="analyticstitle">Analytics</div>
-        <div className="analyticspage">
             
-            <div className="orderFreq"> 
-            <div className="orderFreqTitle">Total number of orders: </div>
-            {totalOrders}
+        <div className="analyticspage">
+            <div className="row1">
+                <div className="orderFreq"> 
+                    <div className="orderFreqTitle">Total number of orders: </div>
+                    <div className="orderFreqVal">{totalOrders}</div>
+                </div>
+
+                <div className="custFreq"> 
+                    <div className="custFreqTitle">Total # of unique customers: </div>
+                    <div className="custFreqVal">{totalCustomers}</div>
+                </div>
+
+                <div className="itemFreq">
+                    <div className="itemFreqTitle">Frequency of Items Ordered: </div>
+
+                    <ul>
+                        {itemFrequency.map(({ item, count }) => (
+                            <li key={item._id}>
+                                {item.item_name}: {count}
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
+                
             </div>
-            <p>Total number of unique customers: {totalCustomers}</p>
-            <p>Total revenue: ${totalRevenue.toFixed(2)}</p>
-            <ul>
-                {itemFrequency.map(({ item, count }) => (
-                    <li key={item._id}>
-                        {item.item_name}: {count}
-                    </li>
-                ))}
-            </ul>
-            <h4>Pickup Time Frequency:</h4>
-            <ul>
-                {Object.entries(pickupTimeFrequency).map(([pickupTime, count]) => (
-                    <li key={pickupTime}>
-                        Pickup Time: {pickupTime} - Orders: {count}
-                    </li>
-                ))}
-            </ul>
+
+            <div className="row2">
+                <div className="timeFreq">
+                        <div className="timeFreqTitle">Pickup Time Frequency:</div>
+                        {/* <ul>
+                        {Object.entries(pickupTimeFrequency).map(([pickupTime, count]) => (
+                            <li key={pickupTime}>
+                                Pickup Time: {pickupTime} - Orders: {count}
+                            </li>
+                        ))}
+                        </ul> */}
+                </div>
+                <div className="revenue">
+
+                    <div className="revenueTitle">
+                        Total revenue: 
+                    </div>
+                    <div className="revenueValue">
+                        ${totalRevenue.toFixed(2)}  
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            
+
+          
+            
+
+
+            
+            
             </div>
         </div>
     );

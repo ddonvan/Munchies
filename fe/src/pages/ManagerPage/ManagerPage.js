@@ -217,7 +217,9 @@ const fetchOrders = async () => {
 
   </div>
 
-  <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu}  />
+  {currentRest && (
+  <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu} />
+)}
 
   <Modal show={showModal} onHide={handleCloseModal} className="modal">
                 <Modal.Header closeButton>

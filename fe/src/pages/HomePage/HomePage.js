@@ -1,6 +1,6 @@
 import { RestaurantList } from '../../components/restaurants/restaurantList/restaurantList.component';
 import { PageHeader } from '../../components/header/header.component';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './HomePage.styles.css' ;
 import { useCustomerId } from './CustomerContext';
@@ -9,6 +9,9 @@ function HomePage() {
     const [restaurants, setRestaurants] = useState([]);
     const [menus, setMenus] = useState([]);
     const { customers, handleCustomerSelect } = useCustomerId();
+    const menuRef = React.useRef(null);
+    const ordersRef = React.useRef(null);
+    const analyticsRef = React.useRef(null);
     // const [customers, setCustomers] = useState([]);
     // const [customerId, setCustomerId] = useState('');
 
@@ -57,13 +60,19 @@ function HomePage() {
     return (
       
         <div className="HomePage">
-          <PageHeader/>
+          <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"></link>   
+
+      <PageHeader menuRef={menuRef} ordersRef={ordersRef} analyticsRef={analyticsRef} />
             <img 
                   src={require('./header-image.jpg')} 
                   style={{ 
                     maxWidth: '100%', 
                     height: '10%', 
-                    marginTop: '-240px'}} />
+                    marginTop: '-240px',
+                    filter: 'brightness(35%)',
+                  }} />
           <div className="container">
           <div className="orange-box">
             <div className="text">
@@ -78,7 +87,7 @@ function HomePage() {
               </div>
               <h4 className='home-text'>
               Welcome to MUNCHIES! <br />
-              Satisfy cravings in a tap. <br />
+              Satisfy cravings in just a tap. <br />
               Explore top restaurants below.
               </h4>
             </div>

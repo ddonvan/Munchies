@@ -1,11 +1,25 @@
-import React, {useRef} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import './header.styles.css';
 import { SearchBar } from "../searchBar/searchBar.component";
 import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate hook
 
-export const PageHeader = ({ menuRef,ordersRef, analyticsRef}) => {
+export const PageHeader = ({ menuRef, ordersRef, analyticsRef }) => {
+    const [scrolled, setScrolled] = useState(false); // State to track whether the user has scrolled
     const navigate = useNavigate(); // Get navigate function from useNavigate hook
     const location = useLocation(); // Get current location
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 100; // Check if user has scrolled
+            setScrolled(isScrolled); // Update state
+        };
+
+        window.addEventListener('scroll', handleScroll); // Add scroll event listener
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll); // Cleanup on unmount
+        };
+    }, []);
 
     const handleCartButtonClick = () => {
         // Navigate to the cart page when the button is clicked
@@ -43,21 +57,19 @@ export const PageHeader = ({ menuRef,ordersRef, analyticsRef}) => {
     };
 
     return (
-        <nav className="navbar">
-            <div className="home-btn" onClick={handleHomeButtonClick}>Customer</div>
-            <div className="manager-select-container" onClick={handleManagerClick}>Manager</div>
+        <nav className={`navbar${scrolled && location.pathname !== '/cart' ? ' scrolled' : ''}${location.pathname === '/cart' ? ' cart-page' : ''}`}>
+            <div className="home-btn" onClick={handleHomeButtonClick}>CUSTOMER</div>
+            <div className="manager-select-container" onClick={handleManagerClick}>MANAGER</div>
             <div className="search-bar-container">
                 <SearchBar placeholder='Search'/>
             </div>
 
             {(location.pathname === "/manager") && (
                 <div className="theAnchors">
-                    <div className="menu-btn" onClick={handleMenuClick}>Menu</div>
-                    <div className="orders-btn" onClick={handleOrdersClick}>Orders</div>
-                    <div className="analytics-btn" onClick={handleAnalyticsClick}>Analytics</div>
+                    <div className="menu-btn" onClick={handleMenuClick}>MENU</div>
+                    <div className="orders-btn" onClick={handleOrdersClick}>ORDERS</div>
+                    <div className="analytics-btn" onClick={handleAnalyticsClick}>ANALYTICS</div>
                 </div>
-               
-
             )}
 
             {/* Conditionally render the cart button only if the route is "/" */}
@@ -72,4 +84,3 @@ export const PageHeader = ({ menuRef,ordersRef, analyticsRef}) => {
         </nav>
     );
 }
-

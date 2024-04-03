@@ -25,12 +25,12 @@
     padding-top: 20px
 }
 
-.menuItemsContainer{
+.menuItemsContainer, .ordersContainer{
     border: solid;
     padding: 20px;
     margin-left: 20px;
     margin-right: 30px;
     border-radius: 3px;
    
-    color: rgb(213, 213, 213);
+    border-color: rgb(198, 198, 198);
 }

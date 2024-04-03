@@ -19,8 +19,10 @@
     margin-top: 5px; /* Adjust the margin as needed */
 }
 
-.edit-button {
-    margin-right: 165px;
+
+.menuedit-button{
+    margin-right: 800px;
+    margin-top: -40px;
 }
 
 .item-delete {
@@ -51,5 +53,5 @@
 
 .menu-item-image{
     border-radius: 4px;
- 
+    padding-top: 7px;
 }

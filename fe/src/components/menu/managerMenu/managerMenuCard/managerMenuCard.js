@@ -58,10 +58,10 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
                 <img src={remove} alt="image placeholder text" className="delete"></img>
                 </Button>
             </div>
-            <div className="edit-button">
+            <div className="menuedit-button">
                 <Button variant="outline-secondary" onClick={handleEditClick}>
                     <img src={edit} alt="image placeholder text" className="pencil" />
-</Button>
+                </Button>
             </div>
             <img src={imageURL} alt="image placeholder text" className="menu-item-image" />
             <hr class="line"></hr>

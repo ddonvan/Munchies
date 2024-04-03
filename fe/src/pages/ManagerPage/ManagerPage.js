@@ -214,7 +214,9 @@ const fetchOrders = async () => {
 {currentOrders.length > 0 && (
   <div>
     <div className='ordersTitle'>Orders</div>
+    <div className='ordersContainer'>
     <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
+    </div>
   </div>
 )}
 

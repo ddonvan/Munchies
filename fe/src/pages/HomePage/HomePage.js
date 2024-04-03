@@ -67,7 +67,16 @@ function HomePage() {
           <div className="container">
           <div className="orange-box">
             <div className="text">
-              <h4>
+              <div className="inline-container">
+                <h4 className='home-text'>Hi </h4>
+                <select name='select-for-customer' onChange={handleCustomerSelect} className='custom-select'>
+                  <option value="default" className='defualt-option'>Customer</option>
+                  {customers.map((entry, index) => (
+                    <option key={index}>{entry.firstName} {entry.lastName}</option>
+                  ))}
+                </select>
+              </div>
+              <h4 className='home-text'>
               Welcome to MUNCHIES! <br />
               Satisfy cravings in a tap. <br />
               Explore top restaurants below.
@@ -75,7 +84,8 @@ function HomePage() {
             </div>
             <div className="svg-container">
               <a href="#Restaurants">
-                <svg width="40" height="34.5" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="40" height="34.5" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))' }}>
+                  <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/> 
                   <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/>
                   <path d="M77 41L40.1719 66" stroke="white" strokeWidth="5" strokeLinecap="round"/>
                   <path d="M3 22L40 47.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/>
@@ -90,12 +100,6 @@ function HomePage() {
 
           <div id='Restaurants' className='Restaurants'>
             <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px'}}>Restaurants</h2>
-            <select name='select-for-customer' onChange={handleCustomerSelect}>
-              <option value="default" className='defualt-option'>Select Customer</option>
-              {customers.map((entry, index) => (
-                <option ley={index}>{entry.firstName} {entry.lastName}</option>
-              ))}
-            </select>
             <RestaurantList restaurants={restaurants} menus={menus}/>
           </div>
     

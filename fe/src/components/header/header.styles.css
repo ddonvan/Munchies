@@ -47,6 +47,17 @@
     padding-left: 10px;
   }
 
+  .home-btn:hover{
+    color: #dc894a;
+    font-weight: bold;
+  }
+
+  .home-btn:active,
+  .home-btn:focus{
+    color: #dc894a;
+    font-weight: bold;
+  }
+
 .search-bar-container {
     flex: 1; /* Take up remaining space */
     display: flex; /* Use flexbox */
@@ -74,4 +85,9 @@
     height: 36px;
     padding-left: 20px;
     z-index: 1000;
+}
+
+.manager-select-container:hover{
+  color: #dc894a;
+  font-weight: bold;
 }

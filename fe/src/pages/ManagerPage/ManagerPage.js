@@ -231,8 +231,13 @@ const fetchOrders = async () => {
                     <input type="url" id="image" name="image" value={formData.image} onChange={handleInputChange} /><br /><br />
                     <label htmlFor="price">Price: </label>
                     <input type="number" id="price" name="price" value={formData.price} onChange={handleInputChange} /><br /><br />
+
                     <label htmlFor="availability">Availability: </label>
-                    <input type="text" id="availability" name="availability" value={formData.availability} onChange={handleInputChange} /><br /><br />
+                    <select id="availability" name="availability" value={formData.availability} onChange={handleInputChange}>
+                        <option value="available">Available</option>
+                        <option value="sold-out">Sold Out</option>
+                    </select>
+
                 </form>
                     </form>
                 </Modal.Body>

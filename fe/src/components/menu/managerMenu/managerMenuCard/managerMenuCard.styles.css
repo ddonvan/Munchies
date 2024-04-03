@@ -2,10 +2,54 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(218, 218, 218); /* Ensure border property is included */
+    border: 1px solid rgb(218, 218, 218);
     border-radius: 4px;
     padding: 16px;
     margin-bottom: 16px;
     width: 260px;
-    position: relative; /* Ensure positioning context for absolute positioning */
+    position: relative;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* Add a horizontal line */
+.managermenu-container {
+
+  
+    border-bottom: 1px solid rgb(218, 218, 218);
+    margin-top: 5px; /* Adjust the margin as needed */
+}
+
+.edit-button {
+    margin-right: 165px;
+}
+
+.item-delete {
+    margin-left: 165px;
+}
+
+.pencil, .delete {
+    width: 25px;
+    height: 25px;
+}
+
+.itemname {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 7px;
+}
+
+.itemprice {
+    color: rgb(109, 109, 109);
+    font-size: 18px;
+    padding-left: 7px;
+}
+.line {
+    border-top: 1px solid rgb(158, 158, 158);
+    margin: 8px 0; /* Adjust the margin as needed */
+}
+
+.menu-item-image{
+    border-radius: 4px;
+ 
 }

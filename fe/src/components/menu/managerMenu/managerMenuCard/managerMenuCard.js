@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from 'react-bootstrap/Modal';
 import React, { useState } from "react";
 import "./managerMenuCard.styles.css";
+import edit from '../pencil.png';
+import remove from '../delete.png';
 
 export const ManagerMenu = ({ menu, fetchMenus}) => {
     const [showModal, setShowModal] = useState(false);
@@ -52,14 +54,20 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
     return (
         <div className="managermenu-container">
             <div className="item-delete">
-                <Button variant="danger" onClick={() => handleDeleteItem(menu)}>X</Button>
+                <Button variant="outline-danger" onClick={() => handleDeleteItem(menu)}>
+                <img src={remove} alt="image placeholder text" className="delete"></img>
+                </Button>
+            </div>
+            <div className="edit-button">
+                <Button variant="outline-secondary" onClick={handleEditClick}>
+                    <img src={edit} alt="image placeholder text" className="pencil" />
+</Button>
             </div>
             <img src={imageURL} alt="image placeholder text" className="menu-item-image" />
-            <h5>{item_name}</h5>
-            <h5>${price}.00</h5>
-            <div className="edit-button">
-                <Button variant="primary" onClick={handleEditClick}>Edit</Button>
-            </div>
+            <hr class="line"></hr>
+            <div className="itemname">{item_name}</div>
+            <div className="itemprice">${price}.00</div>
+            
 
             {/* Modal for Menu Items */}
             <Modal show={showModal} onHide={handleCloseModal} className="modal">

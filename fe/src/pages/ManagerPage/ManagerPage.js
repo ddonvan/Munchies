@@ -202,15 +202,18 @@ const fetchOrders = async () => {
   </div>
   {currentMenu.length > 0 && (
     <div>
-        <h2>Menu Items <Button className='addItem' onClick={handleAddClick}>+</Button></h2>
-        <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} />
+        <div className='menuTitle'>Menu Items </div>
+        <div className='menuItemsContainer'>
+          <Button className='addItem' onClick={handleAddClick}>Add Menu Item</Button>
+          <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} /></div>
+        
     </div>
 )}
 
 
 {currentOrders.length > 0 && (
   <div>
-    <h2>Orders</h2>
+    <div className='ordersTitle'>Orders</div>
     <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
   </div>
 )}

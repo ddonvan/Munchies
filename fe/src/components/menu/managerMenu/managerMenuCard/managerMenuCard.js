@@ -46,7 +46,7 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
     };
 
     const toggleStatus = () => {
-        setItemStatus(prevStatus => prevStatus === "available" ? "out of order" : "available");
+        setItemStatus(prevStatus => prevStatus === "available" ? "sold out" : "available");
     };
 
     return (
@@ -71,7 +71,7 @@ export const ManagerMenu = ({ menu, fetchMenus}) => {
                     <h5>Price: ${price}.00</h5>
                     <h5>Status: {itemStatus}</h5> {/* Use itemStatus here */}
                     <button onClick={toggleStatus}>
-                        {itemStatus === "available" ? "Mark Out of Order" : "Mark Available"}
+                        {itemStatus === "available" ? "Mark Sold Out" : "Mark Available"}
                     </button>
                 </Modal.Body>
                 <Modal.Footer>

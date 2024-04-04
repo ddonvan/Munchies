@@ -60,6 +60,7 @@
   .svg-container {
     display: flex;
     justify-content: center;
+    padding-top: 50px;
   }
   
   body {
@@ -68,7 +69,7 @@
 
   .Restaurants {
     text-align: center;
-    padding-bottom: 750px;
+    padding-bottom: 75px;
   }
   
   .Restaurants h2 {
@@ -112,9 +113,10 @@
     /* Your custom styles for the select element */
     border-radius: 5px;
     margin-bottom: 15px;
-    width: 140px;
+    width: 170px;
     color: #36454F;
-    height: 25px;
+    height: 35px;
+    font-weight: bold;
   }
 
 .home-text{

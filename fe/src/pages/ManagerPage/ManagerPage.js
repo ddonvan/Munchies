@@ -239,7 +239,7 @@ const fetchOrders = async () => {
     <div>
         <div className='menuTitle' ref={menuRef}>Menu Items </div>
         <div className='menuItemsContainer'>
-          <Button className='addItem' onClick={handleAddClick}>Add Menu Item</Button>
+          <Button className='addItem' variant='outline-success' onClick={handleAddClick}><strong>Add Menu Item</strong></Button>
           <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} /></div>
         
     </div>
@@ -290,7 +290,7 @@ const fetchOrders = async () => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleSaveModal}>
+                    <Button variant="outline-success" onClick={handleSaveModal}>
                         Save
                     </Button>
                 </Modal.Footer>

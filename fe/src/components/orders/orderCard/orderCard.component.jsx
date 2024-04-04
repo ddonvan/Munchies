@@ -8,7 +8,7 @@ import { PickupDropdown } from "./pickupDropdown.component";
 import { CloseButton } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-export const Order = ({ order, onDelete }) => {
+export const Order = ({ order, onDelete, fetchOrders }) => {
     const {
         _id, customer_id, restaurant_id,
         items, pickup_time, status
@@ -77,7 +77,8 @@ export const Order = ({ order, onDelete }) => {
                 status: "Ordered"
             });
             setShowModal(false);
-            window.location.reload();
+
+            fetchOrders();
         } catch (e) {
             console.error("Error placing order:", e);
         }

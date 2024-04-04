@@ -107,4 +107,25 @@
 .theAnchors{
   display: flex;
   gap: 15px;
+  margin-right: 40px; /* Move the entire group of anchors to the left */
+}
+
+
+.menu-btn,
+.orders-btn,
+.analytics-btn {
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 80px;
+  height: 36px;
+  padding-left: 20px; /* Adjust padding as needed */
+}
+
+.menu-btn:hover,
+.orders-btn:hover,
+.analytics-btn:hover {
+  color: #dc894a; /* Change color on hover */
+  font-weight: bold; /* Add bold font on hover */
 }

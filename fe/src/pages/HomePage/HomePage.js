@@ -93,7 +93,7 @@ function HomePage() {
             </div>
             <div className="svg-container">
               <a href="#Restaurants">
-              <svg width="40" height="34.5" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))' }}>
+              <svg width="55" height="55" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))' }}>
                   <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/> 
                   <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/>
                   <path d="M77 41L40.1719 66" stroke="white" strokeWidth="5" strokeLinecap="round"/>
@@ -108,7 +108,7 @@ function HomePage() {
           </div>
 
           <div id='Restaurants' className='Restaurants'>
-            <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px'}}>Restaurants</h2>
+            <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px', fontWeight: 'bolder'}}>Restaurants</h2>
             <RestaurantList restaurants={restaurants} menus={menus}/>
           </div>
     

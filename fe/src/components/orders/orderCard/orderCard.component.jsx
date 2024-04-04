@@ -129,19 +129,21 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
             )}
             <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '15px' }}>
                 <p style={{ margin: '0' }}>Order#: {order._id}</p>
-                <ProgressBar
-                    animated
-                    now={getStatusProgress(status)}
-                    label={<span style={{ fontWeight: '800' }}>{getStatusProgress(status)}%</span>}
-                    style={{ 
-                        marginLeft: 'auto', 
-                        width: '300px',  
-                        height: '30px', 
-                        borderRadius:'20px',
-                        border: '1px solid #DADADA',
-                        boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' }} // Pushes the progress bar to the right
-                    variant="success"
-                />
+                {status !== "pending" && (
+                    <ProgressBar
+                        animated
+                        now={getStatusProgress(status)}
+                        label={<span style={{ fontWeight: '800' }}>{getStatusProgress(status)}%</span>}
+                        style={{ 
+                            marginLeft: 'auto', 
+                            width: '300px',  
+                            height: '30px', 
+                            borderRadius:'20px',
+                            border: '1px solid #DADADA',
+                            boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' }} // Pushes the progress bar to the right
+                        variant="success"
+                    />
+                )}
             </div>
             <ul>
                 {items.map((item, index) => {

@@ -9,17 +9,22 @@ const [orders, setOrders] = useState([]);
 const { customerId } = useCustomerId();
 
   //Order Fetch
-    useEffect(() => {
-        const fetchOrders = async () => {
+    const fetchOrders = async () => {
         const response = await axios.get(
             `http://localhost:8000/orders/`,
         );
         setOrders(response.data);
-        };
-        fetchOrders();
-    }, []);
+    };
+
     console.log(customerId);
 
+    useEffect(() => {
+        fetchOrders();
+    }, [])
+
+    const handleOrderUpdate = () => {
+        
+    };
 
     const handleDelete = (deletedOrder) => {
         setOrders(prevOrders => prevOrders.filter(order => order._id !== deletedOrder._id));
@@ -30,7 +35,7 @@ const { customerId } = useCustomerId();
     return (
         <div className="orderList">
             {filteredOrders.map(order => (
-                <Order key={order._id} order={order} onDelete={handleDelete}/>
+                <Order key={order._id} order={order} onDelete={handleDelete} fetchOrders={fetchOrders}/>
             ))}
         </div>
     )

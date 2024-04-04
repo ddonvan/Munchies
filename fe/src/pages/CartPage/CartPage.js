@@ -46,19 +46,14 @@ const CartPage = () => {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"></link> 
   <PageHeader/>
-  <div className='cart-overview' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-    <div id="see-cart">
-        {currentMenu !== "cart" && <Button onClick={handleCart}><strong>See Cart</strong></Button>}
-    </div>
-    <div style={{ paddingLeft: currentMenu === "cart" ? '220px' : currentMenu === "in progress" ? '38px' : currentMenu === "completed" ? '40px' : '220px' }}>
-        <h2>Orders Overview</h2>
-    </div>
-    <div>
-        {currentMenu !== "in progress" && <Button id="see-inprogress" onClick={handleInProgress}><strong>See In Progress</strong></Button>}
-        {currentMenu !== "completed" && <Button id="see-completed" onClick={handleComplete}><strong>See Completed</strong></Button>}
-    </div>
-</div>
+  <div className='cart-overview'>
+  {currentMenu !== "cart" && <Button onClick={handleCart}>See Cart</Button>}
+    {/* Add other buttons here if needed */}
+    <h2 style={{textAlign: 'center', paddingBottom:'20px', paddingTop:'10px'}}>Cart Overview</h2>
+    {currentMenu !== "in progress" && <Button onClick={handleInProgress}>See in Progress</Button>}
+    {currentMenu !== "completed" && <Button onClick={handleComplete}>See Complete</Button>}
 
+  </div>
   <OrderList selected={currentMenu}/>
 </div>
 

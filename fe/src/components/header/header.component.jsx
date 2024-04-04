@@ -74,8 +74,8 @@ export const PageHeader = ({ menuRef, ordersRef, analyticsRef }) => {
 
             {/* Conditionally render the cart button only if the route is "/" */}
             {(location.pathname === "/" || location.pathname === "/cart") && (
-               <button onClick={handleCartButtonClick} style={{ width: '120px', borderRadius:'5px' }}>
-                <strong>Orders</strong>
+               <button onClick={handleCartButtonClick} style={{ width: '100px', borderRadius:'5px' }}>
+                Cart
                <img 
                 src={require('./orders-icon.png')} 
                 style={{ width: '25px', height: 'auto', marginLeft: '10px', zIndex:1 }}/>

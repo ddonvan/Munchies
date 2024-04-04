@@ -153,7 +153,14 @@ const fetchOrders = async () => {
       const category = formData["category"];
       const image = formData["image"];
       const price = formData["price"];
-      const availability = formData["availability"];
+      let availability = "";
+
+      if(formData["availability"] === ""){
+        availability = "available";
+      }
+      else {
+        availability = formData["availability"];
+      }
   
       try {            
           await axios.post(`http://localhost:8000/menus/`, 

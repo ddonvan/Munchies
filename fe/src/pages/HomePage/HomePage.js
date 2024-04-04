@@ -87,9 +87,11 @@ function HomePage() {
               </div>
               <h4 className='home-text'>
               Welcome to MUNCHIES! <br />
+              </h4>
+              <h5 className='home-text'>
               Satisfy cravings in just a tap. <br />
               Explore top restaurants below.
-              </h4>
+              </h5>
             </div>
             <div className="svg-container">
               <a href="#Restaurants">

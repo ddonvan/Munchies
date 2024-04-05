@@ -32,6 +32,6 @@ Once both backend and frontend servers are running, you can access the applicati
 
 
 ## Contact Information:
-For further assistance or inquiries, feel free to contact the project maintainers via email or any other specified communication channels.
+For further assistance or inquiries, feel free to contact the team members via email.
 
 

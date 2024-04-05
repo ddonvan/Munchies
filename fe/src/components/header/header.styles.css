@@ -75,7 +75,6 @@
     display: flex; /* Use flexbox */
     justify-content: center; /* Align items horizontally in the center */
     align-items: center; /* Align items vertically in the center */
-    margin-left: -60px;
 }
 
 .customer-select-container{

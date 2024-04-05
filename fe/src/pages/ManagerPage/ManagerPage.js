@@ -19,6 +19,9 @@ function ManagerPage() {
     const [currentMenu, setCurrentMenu] = useState([]);
     const [currentOrders, setCurrentOrders] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [selection, setSelection] = useState("");
+    const [selectedManager, setSelectedManager] = useState("");
+    const [filtered, setfiltered] = useState([]);
     const [formData, setFormData] = useState({
         name: "",
         category: "",
@@ -66,10 +69,58 @@ function ManagerPage() {
       setMenu();
     }, [menus]);
 
+    const handleInProgress = () => {
+      setSelection("in progress");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
+      setCurrentOrders(filteredOrders);
+    };
+  
+    const handleOrdered = () => {
+      setSelection("ordered");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
+      setCurrentOrders(filteredOrders);
+    };
+  
+    const handleComplete = () => {
+      setSelection("completed");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
+      setCurrentOrders(filteredOrders);
+    };
+
+    const handleAwaiting = () => {
+      setSelection("awaiting pickup");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
+      setCurrentOrders(filteredOrders);
+    };
+
+    const handleAll = () => {
+      setSelection("");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest && order.status !== "pending");
+      setCurrentOrders(filteredOrders);
+    };
+
+
     useEffect(() => {
       const setOrder = async () => {
         if(currentRest){
-            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
+          let filteredOrders = []
+          if(selection === ""){
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
+            
+          }  else if (selection === "Ordered") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
+          }
+          else if (selection === "In Progress") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
+          }
+          else if (selection === "Awaiting Pickup") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
+          }
+          
+          else if (selection === "Completed") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
+          }
+            
             setCurrentOrders(filteredOrders);
       }
         
@@ -131,6 +182,8 @@ const fetchOrders = async () => {
         setCurrentMenu(filteredMenus);
         setCurrentOrders(filteredOrders);
         setSelectedManagerName(`${selectedManager.firstName} ${selectedManager.lastName}`);
+        setSelectedManager(selectedManager);
+        setfiltered(filteredOrders);
     };
     
 
@@ -200,8 +253,22 @@ const fetchOrders = async () => {
         });
     };
 
+      // Define the custom order of statuses
+  const statusOrder = ["Ordered", "In Progress", "Awaiting Pickup", "Completed"];
+
+  // Custom sorting function based on status order
+  const customSort = (a, b) => {
+      const statusA = a.status;
+      const statusB = b.status;
+      return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
+  };
+
+  // Use the custom sorting function to sort orders
+  const sortedOrders = currentOrders.sort(customSort);
+
+
     
-  
+
   
     return (
         <div className="ManagerPage" >
@@ -253,10 +320,15 @@ const fetchOrders = async () => {
 )}
 
 
-{currentOrders.length > 0 && (
+{selectedManager && (
   <div className='entireOrders' ref={ordersRef}>
     <div className='ordersTitle'>Orders</div>
     <div className='ordersContainer'>
+    <Button onClick={handleOrdered}>Ordered</Button>
+    <Button onClick={handleInProgress}>In Progress</Button>
+    <Button onClick={handleAwaiting}>Awaiting Pickup</Button>
+    <Button onClick={handleComplete}>Completed</Button>
+    <Button onClick={handleAll}>See All</Button>
     <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
     </div>
   </div>
@@ -266,7 +338,7 @@ const fetchOrders = async () => {
 
   {currentRest && (
     <div className='entireAnalytics' ref={analyticsRef}>
-       <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu} />
+       <Analytics orders={filtered} menus={menus} currentMenu={currentMenu} />
     </div>
  
 )}

@@ -72,9 +72,6 @@ export const ManagerOrder = ({ order, fetchOrders }) => {
 
     return (
         <div className="manager-order-container">
-            {/* <div className="order-delete">
-                <Button variant="danger" onClick={() => handleDeleteOrder(order)}>X</Button>
-            </div> */}
             <div className="subtotal">
                 <div className="ordersubtitle"> Order #:  </div>
                 <div className="orderssubresult">{order._id} </div>

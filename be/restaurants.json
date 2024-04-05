@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "65f47df1178da402f8591c4e",
+        "name": "Nandos",
+        "address": "address 54321",
+        "imageURL": "https://tb-static.uber.com/prod/image-proc/processed_images/245d8ea077c905d3dad4ad8ec7f1324f/c73ecc27d2a9eaa735b1ee95304ba588.jpeg",
+        "createdAt": "2024-03-15T16:57:21.066Z",
+        "updatedAt": "2024-03-15T16:57:21.066Z",
+        "__v": 0
+    },
+    {
+        "_id": "65f47e0d178da402f8591c50",
+        "name": "Chachi's",
+        "address": "address 12",
+        "imageURL": "https://tb-static.uber.com/prod/image-proc/processed_images/e069ed14b48bef379d14257f14173286/c73ecc27d2a9eaa735b1ee95304ba588.jpeg",
+        "createdAt": "2024-03-15T16:57:49.252Z",
+        "updatedAt": "2024-03-15T16:57:49.252Z",
+        "__v": 0
+    },
+    {
+        "_id": "65f34821512b8614096d7ba5",
+        "name": "McDonalds",
+        "imageURL": "https://tb-static.uber.com/prod/image-proc/processed_images/f5cde19f51c1dc3a16b155f4fdb8e16a/c9252e6c6cd289c588c3381bc77b1dfc.jpeg",
+        "createdAt": "2024-03-14T18:55:29.242Z",
+        "updatedAt": "2024-04-04T18:13:30.398Z",
+        "__v": 0,
+        "address": "address 321"
+    },
+    {
+        "_id": "65f47de0178da402f8591c4c",
+        "name": "Burger King",
+        "address": "address 1234",
+        "imageURL": "https://tb-static.uber.com/prod/image-proc/processed_images/b058b84b17d76a1b4c738ea10f2a40e5/c9252e6c6cd289c588c3381bc77b1dfc.jpeg",
+        "createdAt": "2024-03-15T16:57:04.622Z",
+        "updatedAt": "2024-03-15T16:57:04.622Z",
+        "__v": 0
+    }
+]

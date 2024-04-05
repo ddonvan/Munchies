@@ -1,0 +1,42 @@
+[
+    {
+        "_id": "660c4f0b0676b46c1abda384",
+        "firstName": "Daniel",
+        "lastName": "Donovan",
+        "restaurant_id": "65f47de0178da402f8591c4c",
+        "position": "Manager",
+        "createdAt": "2024-04-02T18:31:39.526Z",
+        "updatedAt": "2024-04-02T18:31:39.526Z",
+        "__v": 0
+    },
+    {
+        "_id": "660c51430676b46c1abda4a4",
+        "firstName": "Katherine",
+        "lastName": "Cholowski",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "position": "Manager",
+        "createdAt": "2024-04-02T18:41:07.071Z",
+        "updatedAt": "2024-04-02T18:41:07.071Z",
+        "__v": 0
+    },
+    {
+        "_id": "661038a4d9234eac4b30de39",
+        "firstName": "Nancy",
+        "lastName": "Dinh",
+        "restaurant_id": "65f47df1178da402f8591c4e",
+        "position": "Manager",
+        "createdAt": "2024-04-05T17:45:08.494Z",
+        "updatedAt": "2024-04-05T17:45:08.494Z",
+        "__v": 0
+    },
+    {
+        "_id": "661038b9d9234eac4b30de3b",
+        "firstName": "Maria",
+        "lastName": "Sison",
+        "restaurant_id": "65f47e0d178da402f8591c50",
+        "position": "Manager",
+        "createdAt": "2024-04-05T17:45:29.833Z",
+        "updatedAt": "2024-04-05T17:45:29.833Z",
+        "__v": 0
+    }
+]

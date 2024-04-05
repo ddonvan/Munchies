@@ -1,0 +1,22 @@
+[
+    {
+    "_id": "660c9a147fd674e189932b33",
+    "firstName": "Trixie",
+    "lastName": "Sison",
+    "email": "sison@gmail.com",
+    "phone": "(780) 444 - 8090",
+    "createdAt": "2024-04-02T23:51:49.002Z",
+    "updatedAt": "2024-04-02T23:51:49.002Z",
+    "__v": 0
+    },
+    {
+        "firstName": "Romel",
+        "lastName": "Mendoza",
+        "email": "mendoza@gmail.com",
+        "phone": "(780) 354 - 8700",
+        "_id": "661037ed8df6ad72a586eac9",
+        "createdAt": "2024-04-05T17:42:05.044Z",
+        "updatedAt": "2024-04-05T17:42:05.044Z",
+        "__v": 0
+    }
+]

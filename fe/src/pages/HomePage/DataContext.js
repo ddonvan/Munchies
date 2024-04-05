@@ -4,10 +4,12 @@ import axios from 'axios';
 
 const DataContext = createContext();
 
+// context to use restaurant and menu data
 export const DataProvider = ({ children }) => {
     const [restaurants, setRestaurants] = useState([]);
     const [menus, setMenus] = useState([]);
     
+    // restaurant fetching
     useEffect(() => {
         const fetchRestaurants = async () => {
           const response = await axios.get(
@@ -18,6 +20,7 @@ export const DataProvider = ({ children }) => {
         fetchRestaurants();
       }, []);
 
+    // menu fetching
     useEffect(() => {
       const fetchMenus = async () => {
         const response = await axios.get(

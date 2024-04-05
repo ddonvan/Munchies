@@ -1,6 +1,6 @@
 import { getRestaurantsFromRepository, updateRestaurantinRepository, addRestaurantToRepository } from "../repositories/restaurant.repository.js";
 
-// Gets a list of all courses in the database
+// Get all restaurants
 export const getRestaurants = async function (req, res, next) {
     try {
         const restaurants = await getRestaurantsFromRepository({});
@@ -10,7 +10,7 @@ export const getRestaurants = async function (req, res, next) {
     }
 }
 
-// gets a course based on the given course id
+// Get a restaurant based on id
 export const getRestaurant = async (req, res) => {
     const { id } = req.params;
     try {
@@ -21,6 +21,7 @@ export const getRestaurant = async (req, res) => {
     }
 }
 
+// Add a restaurant
 export const addRestaurant = async (req, res) => {
     const { body } = req;
     try {
@@ -32,6 +33,7 @@ export const addRestaurant = async (req, res) => {
     }
   }
 
+// Update a restaurant
 export const updateRestaurant = async (req, res) => {
     const { id } = req.params;
     const { body } = req;

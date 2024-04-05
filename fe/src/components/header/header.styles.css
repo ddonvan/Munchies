@@ -6,14 +6,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed; /* Make the navbar fixed */
+  position: fixed; 
   top: 0;
   z-index: 10;
   font-weight: bold;
   
 }
 .cart-page {
-  background-color: #0b161a; /* Change the background color */
+  background-color: #0b161a; 
 }
 .navbar.scrolled {
   background-color: #0b161a; /* Change background color when scrolled */
@@ -25,7 +25,7 @@
 }
 
   .navbar h1 {
-    font-size: 24px; /* Adjust the font size */
+    font-size: 24px; 
     font-family: 'roboto';
     padding-top: 7px;
     padding-bottom: 7px;
@@ -35,25 +35,25 @@
   }
 
   .navbar button {
-    background-color: #dc894a; /* Transparent background for the button */
-    color: white; /* Text color for the button */
-    border: none; /* Remove border */
-    cursor: pointer; /* Set cursor to pointer */
-    font-size: 16px; /* Adjust font size */
+    background-color: #dc894a; 
+    color: white; 
+    border: none;
+    cursor: pointer; 
+    font-size: 16px; 
     width: 80px;
     height: 36px;
     gap: 20px;
   }
 
   .navbar button:hover {
-    background-color: #b56e36; /* Adjust the color as needed */
+    background-color: #b56e36; 
   }
 
   .home-btn {
-    color: white; /* Text color for the button */
-    border: none; /* Remove border */
-    cursor: pointer; /* Set cursor to pointer */
-    font-size: 16px; /* Adjust font size */
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 16px; 
     width: 80px;
     height: 36px;
     padding-left: 10px;
@@ -72,27 +72,26 @@
 
 .search-bar-container {
     flex: 1; /* Take up remaining space */
-    display: flex; /* Use flexbox */
+    display: flex; 
     justify-content: center; /* Align items horizontally in the center */
     align-items: center; /* Align items vertically in the center */
-    margin-left: -60px;
 }
 
 .customer-select-container{
-  color: white; /* Text color for the button */
-  border: none; /* Remove border */
-  cursor: pointer; /* Set cursor to pointer */
-  font-size: 16px; /* Adjust font size */
+  color: white; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 16px; 
   width: 80px;
   height: 36px;
   padding-left: 20px;
 }
 
 .manager-select-container{
-  color: white; /* Text color for the button */
-    border: none; /* Remove border */
-    cursor: pointer; /* Set cursor to pointer */
-    font-size: 16px; /* Adjust font size */
+  color: white; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 16px; 
     width: 80px;
     height: 36px;
     padding-left: 20px;
@@ -107,4 +106,25 @@
 .theAnchors{
   display: flex;
   gap: 15px;
+  margin-right: 40px; /* Move the entire group of anchors to the left */
+}
+
+
+.menu-btn,
+.orders-btn,
+.analytics-btn {
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 80px;
+  height: 36px;
+  padding-left: 20px; 
+}
+
+.menu-btn:hover,
+.orders-btn:hover,
+.analytics-btn:hover {
+  color: #dc894a; 
+  font-weight: bold; 
 }

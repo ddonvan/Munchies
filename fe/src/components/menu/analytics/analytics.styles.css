@@ -15,14 +15,12 @@
 }
 
 .row1, .row2{
-    display: flex; /* Use flexbox */
+    display: flex; 
  
 }
 .analyticstitle{
     text-align: center;
     font-weight: bold;
-    padding-top: 50px;
-    
     font-size: 40px;
 }
 .orderFreq, .custFreq {
@@ -59,7 +57,7 @@
 
 .plot-container {
     padding: 0;
-    width: 100%; /* Adjust the width as needed */
+    width: 100%; 
 }
 
 .orderFreqTitle, .custFreqTitle, .timeFreqTitle, .itemFreqTitle, .revenueTitle {

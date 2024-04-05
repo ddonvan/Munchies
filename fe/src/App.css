@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  max-height: 100vh; /* Set a maximum height equal to the viewport height */
+  max-height: 100vh; 
   overflow-y: auto;
-  font-family: 'Playfair Display', serif; /* Set the font family to Playfair Display */
+  font-family: 'Playfair Display', serif; 
 
 }
 
@@ -26,7 +26,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  font-family: 'Playfair Display', serif; /* Set the font family to Playfair Display */
+  font-family: 'Playfair Display', serif; 
 
   
 }

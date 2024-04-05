@@ -8,7 +8,7 @@ import { PickupDropdown } from "./pickupDropdown.component";
 import { CloseButton } from 'react-bootstrap';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 
-export const Order = ({ order, onDelete }) => {
+export const Order = ({ order, onDelete, fetchOrders }) => {
     const {
         _id, customer_id, restaurant_id,
         items, pickup_time, status
@@ -37,6 +37,7 @@ export const Order = ({ order, onDelete }) => {
     }
     //-------------------------
 
+    // Order placing
     const handlePlaceClick = () => {
         setShowModal(true);
     }
@@ -45,6 +46,7 @@ export const Order = ({ order, onDelete }) => {
         setShowModal(false);
     }
 
+    // Selecting pickup time
     const handleSelect = (time) => {
         setSelectedPickupTime(time);
     };
@@ -77,7 +79,21 @@ export const Order = ({ order, onDelete }) => {
                 status: "Ordered"
             });
             setShowModal(false);
-            window.location.reload();
+
+            fetchOrders();
+        } catch (e) {
+            console.error("Error placing order:", e);
+        }
+    }
+
+    const handleOrderComplete = async () => {
+        try {
+            await axios.patch(`http://localhost:8000/orders/update/${_id}`, {
+                status: "Completed"
+            });
+            setShowModal(false);
+
+            fetchOrders();
         } catch (e) {
             console.error("Error placing order:", e);
         }
@@ -92,8 +108,6 @@ export const Order = ({ order, onDelete }) => {
         }
         return acc;
     }, 0);
-
-    console.log(selectedPickupTime);
 
     // Function to calculate progress percentage based on status
     const getStatusProgress = (status) => {
@@ -128,19 +142,21 @@ export const Order = ({ order, onDelete }) => {
             )}
             <div style={{ display: 'flex', alignItems: 'center', paddingBottom: '15px' }}>
                 <p style={{ margin: '0' }}>Order#: {order._id}</p>
-                <ProgressBar
-                    animated
-                    now={getStatusProgress(status)}
-                    label={<span style={{ fontWeight: '800' }}>{getStatusProgress(status)}%</span>}
-                    style={{ 
-                        marginLeft: 'auto', 
-                        width: '300px',  
-                        height: '30px', 
-                        borderRadius:'20px',
-                        border: '1px solid #DADADA',
-                        boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' }} // Pushes the progress bar to the right
-                    variant="success"
-                />
+                {status !== "pending" && (
+                    <ProgressBar
+                        animated
+                        now={getStatusProgress(status)}
+                        label={<span style={{ fontWeight: '800' }}>{getStatusProgress(status)}%</span>}
+                        style={{ 
+                            marginLeft: 'auto', 
+                            width: '300px',  
+                            height: '30px', 
+                            borderRadius:'20px',
+                            border: '1px solid #DADADA',
+                            boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.25)' }} // Pushes the progress bar to the right
+                        variant="success"
+                    />
+                )}
             </div>
             <ul>
                 {items.map((item, index) => {
@@ -200,8 +216,7 @@ export const Order = ({ order, onDelete }) => {
                     <h5>Subtotal: <strong>${subtotal.toFixed(2)}</strong></h5>
                 </div>
 
-                <h5 style={{ paddingBottom: '10px' }}>Status: <strong>{status}</strong></h5>
-
+                <h5>Status: <strong>{status}</strong></h5>
                 <div className="pickup-time">
                     <h5 style={{ marginRight: '8px' }}>Pickup Time: </h5>
                     {status === "pending" ? (
@@ -216,6 +231,11 @@ export const Order = ({ order, onDelete }) => {
                         <Button className="place-order" variant="outline-primary"
                             onClick={handlePlaceClick}>Place Order</Button>
                     )}
+                    {status === "Awaiting Pickup" && (
+                        <Button className="place-order" variant="outline-primary" 
+                            onClick={handleOrderComplete}>Mark Completed</Button>
+                    )}
+                    
                 </div>
             </div>
             <Modal className="modal-order" show={showModal} onHide={handleCloseModal}>

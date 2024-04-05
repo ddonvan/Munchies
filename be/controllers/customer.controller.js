@@ -1,5 +1,6 @@
 import { getCustomersFromRepository, addCustomerToRepository } from '../repositories/customer.repository.js';
 
+// Get all customers
 export const getCustomers = async (req, res) => {
   try {
     const customers = await getCustomersFromRepository({});
@@ -9,6 +10,7 @@ export const getCustomers = async (req, res) => {
   }
 }
 
+// Get a single customer by id
 export const getCustomer = async (req, res) => {
   const { id } = req.params;
   try {
@@ -19,6 +21,7 @@ export const getCustomer = async (req, res) => {
   }
 }
 
+// Add a customer
 export const addCustomer = async (req, res) => {
   const { body } = req;
   try {

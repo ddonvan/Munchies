@@ -12,27 +12,6 @@ function HomePage() {
     const menuRef = React.useRef(null);
     const ordersRef = React.useRef(null);
     const analyticsRef = React.useRef(null);
-    // const [customers, setCustomers] = useState([]);
-    // const [customerId, setCustomerId] = useState('');
-
-    // //Customer fetching
-    // useEffect(() => {
-    //   const fetchCustomers = async () => {
-    //     const response = await axios.get(
-    //       'http://localhost:8000/customers'
-    //     );
-    //     setCustomers(response.data);
-    //   };
-    //   fetchCustomers();
-    // }, []);
-
-    // const handleCustomerSelect = (e) => {
-    //   const selectedCustomerId = e.target.selectedIndex-1;
-    //   const selectedCustomer = customers[selectedCustomerId];
-    //   const cId = selectedCustomer["_id"];
-    //   console.log(cId);
-    //   setCustomerId(cId);
-    // }
     
     //Restaurant fetching
     useEffect(() => {
@@ -87,13 +66,15 @@ function HomePage() {
               </div>
               <h4 className='home-text'>
               Welcome to MUNCHIES! <br />
+              </h4>
+              <h5 className='home-text'>
               Satisfy cravings in just a tap. <br />
               Explore top restaurants below.
-              </h4>
+              </h5>
             </div>
             <div className="svg-container">
               <a href="#Restaurants">
-              <svg width="40" height="34.5" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))' }}>
+              <svg width="55" height="55" viewBox="0 0 80 69" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))' }}>
                   <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/> 
                   <path d="M3 41L40 66.1719" stroke="white" strokeWidth="5" strokeLinecap="round"/>
                   <path d="M77 41L40.1719 66" stroke="white" strokeWidth="5" strokeLinecap="round"/>
@@ -108,7 +89,7 @@ function HomePage() {
           </div>
 
           <div id='Restaurants' className='Restaurants'>
-            <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px'}}>Restaurants</h2>
+            <h2 style={{paddingBottom:'20px', paddingTop:'10px', marginTop: '20px', fontWeight: 'bolder'}}>Restaurants</h2>
             <RestaurantList restaurants={restaurants} menus={menus}/>
           </div>
     

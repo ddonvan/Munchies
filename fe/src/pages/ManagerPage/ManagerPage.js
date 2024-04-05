@@ -19,6 +19,9 @@ function ManagerPage() {
     const [currentMenu, setCurrentMenu] = useState([]);
     const [currentOrders, setCurrentOrders] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [selection, setSelection] = useState("");
+    const [selectedManager, setSelectedManager] = useState("");
+    const [filtered, setfiltered] = useState([]);
     const [formData, setFormData] = useState({
         name: "",
         category: "",
@@ -30,7 +33,16 @@ function ManagerPage() {
     const ordersRef = React.useRef(null);
     const menuRef = React.useRef(null);
     const analyticsRef = React.useRef(null);
+    // State to manage the active button
+    const [activeButton, setActiveButton] = useState('');
 
+    // Event handlers
+    const handleButtonClick = (buttonName, additionalAction) => {
+      setActiveButton(buttonName);
+      if (additionalAction) {
+        additionalAction();
+      }
+    };
 
 
     
@@ -54,7 +66,7 @@ function ManagerPage() {
         setMenus(response.data);
       };
 
-
+      // filtering menus
       useEffect(() => {
       const setMenu = async () => {
         if(currentRest){
@@ -66,10 +78,64 @@ function ManagerPage() {
       setMenu();
     }, [menus]);
 
+    // filter orders in progress
+    const handleInProgress = () => {
+      setSelection("in progress");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
+      setCurrentOrders(filteredOrders);
+    };
+    
+    // filter orders that have been ordered
+    const handleOrdered = () => {
+      setSelection("ordered");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
+      setCurrentOrders(filteredOrders);
+    };
+    
+    // filter orders that are complete
+    const handleComplete = () => {
+      setSelection("completed");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
+      setCurrentOrders(filteredOrders);
+    };
+
+    // filter orders awaiting pickup
+    const handleAwaiting = () => {
+      setSelection("awaiting pickup");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
+      setCurrentOrders(filteredOrders);
+    };
+    
+    // filter orders that are pending
+    const handleAll = () => {
+      setSelection("");
+      setActiveButton('See All');
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest && order.status !== "pending");
+      setCurrentOrders(filteredOrders);
+    };
+
+    // filter orders based on status for current restaurant
     useEffect(() => {
       const setOrder = async () => {
         if(currentRest){
-            const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
+          let filteredOrders = []
+          if(selection === ""){
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
+            
+          }  else if (selection === "Ordered") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
+          }
+          else if (selection === "In Progress") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
+          }
+          else if (selection === "Awaiting Pickup") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
+          }
+          
+          else if (selection === "Completed") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
+          }
+            
             setCurrentOrders(filteredOrders);
       }
         
@@ -123,6 +189,7 @@ const fetchOrders = async () => {
         fetchManagers();
       }, []);
 
+      // filters data based on selected manager
       const handleManagerSelect = (selectedManager) => {
         const restID = selectedManager.restaurant_id;
         setCurrentRest(restID);
@@ -131,6 +198,8 @@ const fetchOrders = async () => {
         setCurrentMenu(filteredMenus);
         setCurrentOrders(filteredOrders);
         setSelectedManagerName(`${selectedManager.firstName} ${selectedManager.lastName}`);
+        setSelectedManager(selectedManager);
+        setfiltered(filteredOrders);
     };
     
 
@@ -142,18 +211,20 @@ const fetchOrders = async () => {
         setShowModal(false); // Close Modal
     };
 
-    // const handleDeleteMenuItem = (deletedItem) => {
-    //   const updatedMenus = menus.filter(item => item._id !== deletedItem._id);
-    //   setMenus(updatedMenus);
-    // };
-
-
+    // handle editing a menu item
     const handleSaveModal = async () => {
       const name = formData["name"];
       const category = formData["category"];
       const image = formData["image"];
       const price = formData["price"];
-      const availability = formData["availability"];
+      let availability = "";
+
+      if(formData["availability"] === ""){
+        availability = "available";
+      }
+      else {
+        availability = formData["availability"];
+      }
   
       try {            
           await axios.post(`http://localhost:8000/menus/`, 
@@ -193,8 +264,22 @@ const fetchOrders = async () => {
         });
     };
 
+      // Define the custom order of statuses
+  const statusOrder = ["Ordered", "In Progress", "Awaiting Pickup", "Completed"];
+
+  // Custom sorting function based on status order
+  const customSort = (a, b) => {
+      const statusA = a.status;
+      const statusB = b.status;
+      return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
+  };
+
+  // Use the custom sorting function to sort orders
+  const sortedOrders = currentOrders.sort(customSort);
+
+
     
-  
+
   
     return (
         <div className="ManagerPage" >
@@ -239,27 +324,68 @@ const fetchOrders = async () => {
     <div>
         <div className='menuTitle' ref={menuRef}>Menu Items </div>
         <div className='menuItemsContainer'>
-          <Button className='addItem' onClick={handleAddClick}>Add Menu Item</Button>
+          <Button className='addItem' variant='outline-success' onClick={handleAddClick}><strong>Add Menu Item</strong></Button>
           <ManagerMenuList menus={currentMenu} fetchMenus={fetchMenus} /></div>
         
     </div>
 )}
 
 
-{currentOrders.length > 0 && (
+{selectedManager && (
   <div className='entireOrders' ref={ordersRef}>
     <div className='ordersTitle'>Orders</div>
     <div className='ordersContainer'>
-    <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
+      <div className="buttonsContainer">
+          <div>
+            <Button 
+              variant={activeButton === 'Ordered' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Ordered', handleOrdered)}
+              className="orderButton"
+              active={activeButton === 'Ordered' || activeButton === 'See All'}
+            >
+              Ordered
+            </Button>
+            <Button 
+              variant={activeButton === 'In Progress' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('In Progress', handleInProgress)} 
+              className="orderButton"
+              active={activeButton === 'In Progress' || activeButton === 'See All'}
+            >
+              In Progress
+            </Button>
+            <Button 
+              variant={activeButton === 'Awaiting Pickup' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Awaiting Pickup', handleAwaiting)} 
+              className="orderButton"
+              active={activeButton === 'Awaiting Pickup' || activeButton === 'See All'}
+            >
+              Awaiting Pickup
+            </Button>
+            <Button 
+              variant={activeButton === 'Completed' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Completed', handleComplete)} 
+              className="orderButton"
+              active={activeButton === 'Completed' || activeButton === 'See All'}
+            >
+              Completed
+            </Button>
+          </div>
+          <Button onClick={handleAll} className="seeAllButton" style={{backgroundColor: '#dc894a', marginRight: '20px'}}>See All</Button>
+      </div>
+      <div className="managerOrderListContainer">
+        <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
+      </div>
     </div>
-  </div>
+
+</div>
+
 )}
 
   </div>
 
   {currentRest && (
     <div className='entireAnalytics' ref={analyticsRef}>
-       <Analytics orders={currentOrders} menus={menus} currentMenu={currentMenu} />
+       <Analytics orders={filtered} menus={menus} currentMenu={currentMenu} />
     </div>
  
 )}
@@ -290,7 +416,7 @@ const fetchOrders = async () => {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleSaveModal}>
+                    <Button variant="outline-success" onClick={handleSaveModal}>
                         Save
                     </Button>
                 </Modal.Footer>

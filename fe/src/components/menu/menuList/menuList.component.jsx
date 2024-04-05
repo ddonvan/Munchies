@@ -91,7 +91,7 @@ export const MenuList = ({ menus }) => {
                         <Button onClick={() => {
                             handleCreateOrder(menu); 
                             setShowToast(true);
-                        }}>Add to Cart</Button>
+                        }}>Add to Orders</Button>
                         
                     </div>
                 </div>

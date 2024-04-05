@@ -33,7 +33,16 @@ function ManagerPage() {
     const ordersRef = React.useRef(null);
     const menuRef = React.useRef(null);
     const analyticsRef = React.useRef(null);
+    // State to manage the active button
+    const [activeButton, setActiveButton] = useState('');
 
+    // Event handlers
+    const handleButtonClick = (buttonName, additionalAction) => {
+      setActiveButton(buttonName);
+      if (additionalAction) {
+        additionalAction();
+      }
+    };
 
 
     
@@ -324,14 +333,50 @@ const fetchOrders = async () => {
   <div className='entireOrders' ref={ordersRef}>
     <div className='ordersTitle'>Orders</div>
     <div className='ordersContainer'>
-    <Button onClick={handleOrdered}>Ordered</Button>
-    <Button onClick={handleInProgress}>In Progress</Button>
-    <Button onClick={handleAwaiting}>Awaiting Pickup</Button>
-    <Button onClick={handleComplete}>Completed</Button>
-    <Button onClick={handleAll}>See All</Button>
-    <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
+      <div className="buttonsContainer">
+          <div>
+            <Button 
+              variant={activeButton === 'Ordered' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Ordered', handleOrdered)}
+              className="orderButton"
+              active={activeButton === 'Ordered'}
+            >
+              Ordered
+            </Button>
+            <Button 
+              variant={activeButton === 'In Progress' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('In Progress', handleInProgress)} 
+              className="orderButton"
+              active={activeButton === 'In Progress'}
+            >
+              In Progress
+            </Button>
+            <Button 
+              variant={activeButton === 'Awaiting Pickup' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Awaiting Pickup', handleAwaiting)} 
+              className="orderButton"
+              active={activeButton === 'Awaiting Pickup'}
+            >
+              Awaiting Pickup
+            </Button>
+            <Button 
+              variant={activeButton === 'Completed' ? "primary" : "outline-primary"} 
+              onClick={() => handleButtonClick('Completed', handleComplete)} 
+              className="orderButton"
+              active={activeButton === 'Completed'}
+            >
+              Completed
+            </Button>
+          </div>
+          <Button onClick={handleAll} className="seeAllButton">See All</Button>
+      </div>
+      <div className="managerOrderListContainer">
+        <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
+      </div>
     </div>
-  </div>
+
+</div>
+
 )}
 
   </div>

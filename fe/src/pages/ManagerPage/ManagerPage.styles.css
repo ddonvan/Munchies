@@ -89,11 +89,7 @@
     text-shadow: #000 5px 0 8px;
     z-index: 1;
     filter: none; /* Reset filter */
-
-
 }
-
-
 
 .thirdline{
 
@@ -102,8 +98,6 @@
     padding-top: 20px;
     text-shadow: #000 1px 0 9px;
     filter: none; /* Reset filter */ 
-    
-
 }
 
 
@@ -137,3 +131,30 @@
     width: calc(100% - 130px);
   }
   
+  .ordersContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the container */
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between; /* Space out the buttons */
+    width: 100%; /* Ensure full width */
+    margin-bottom: 10px; /* Add some bottom margin */
+    margin-left: 10px;
+}
+
+.orderButton {
+    margin-right: 10px; /* Add margin between the buttons */
+}
+
+.seeAllButton{
+    margin-right: 20px;
+}
+
+.managerOrderListContainer {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%; /* Ensure full width */
+}
+

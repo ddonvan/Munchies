@@ -214,11 +214,7 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
                     <h5>Subtotal: <strong>${subtotal.toFixed(2)}</strong></h5>
                 </div>
 
-                <h5 style={{ paddingBottom: '10px' }}>Status: <strong>{status}</strong></h5>
-                {status === "Awaiting Pickup" && (
-                        <Button onClick={handleOrderComplete}>Mark Completed</Button>
-                    )}
-
+                <h5>Status: <strong>{status}</strong></h5>
                 <div className="pickup-time">
                     <h5 style={{ marginRight: '8px' }}>Pickup Time: </h5>
                     {status === "pending" ? (
@@ -232,6 +228,10 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
                     {status === "pending" && (
                         <Button className="place-order" variant="outline-primary"
                             onClick={handlePlaceClick}>Place Order</Button>
+                    )}
+                    {status === "Awaiting Pickup" && (
+                        <Button className="place-order" variant="outline-primary" 
+                            onClick={handleOrderComplete}>Mark Completed</Button>
                     )}
                     
                 </div>

@@ -48,7 +48,7 @@ const CartPage = () => {
   <PageHeader/>
   <div className='cart-overview' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
     <div>
-        {currentMenu !== "cart" && <Button id="see-cart" onClick={handleCart}><strong>See Cart</strong></Button>}
+        {currentMenu !== "cart" && <Button id="see-cart" onClick={handleCart}><strong>See Current Orders</strong></Button>}
     </div>
     <div style={{ paddingLeft: currentMenu === "cart" ? '220px' : currentMenu === "in progress" ? '38px' : currentMenu === "completed" ? '40px' : '220px' }}>
         <h2>Orders Overview</h2>

@@ -14,14 +14,14 @@ Description:<br>
 
 ## Running the Application:
 1. Start Backend Server:
-Inside the BE folder, start the backend server.
+Inside the be folder, start the backend server.
 ```
 npm i
 npm start
 ```
 
 2. Start Frontend Server:
-Inside the FE folder, start the frontend server.
+Inside the fe folder, start the frontend server.
 ```
 npm i
 npm start

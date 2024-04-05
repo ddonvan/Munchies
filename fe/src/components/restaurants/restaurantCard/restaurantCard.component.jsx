@@ -14,6 +14,7 @@ export const Restaurant = ({ restaurant, menus }) => {
     const [filteredMenus, setFilteredMenus] = useState([]);
     const [restMenus, setRestMenus] = useState([]);
 
+    // filter menu items based on availability
     useEffect(() => {
         setRestMenus(menus.filter(menu => menu.rest_id === _id && menu.status === "available"));
     }, [_id, menus]);
@@ -28,6 +29,7 @@ export const Restaurant = ({ restaurant, menus }) => {
         setShowModal(false); // Close Modal
     }
 
+    // search for menu items
     useEffect(() => {
         let filtered = [];
         if (searchInput === "") {

@@ -1,6 +1,6 @@
 import Order from "../models/order.model.js";
 
-// gets all orders
+// Get all orders
 export const getOrdersFromRepository = async function (query) {
   try {
     const orders = await Order.find(query);
@@ -10,7 +10,7 @@ export const getOrdersFromRepository = async function (query) {
   }
 };
 
-// add item to order
+// Add item to order
 export const addItemToOrder = async function (orderId, item) {
     try {
         const updatedOrder= await Order.findByIdAndUpdate(
@@ -24,6 +24,7 @@ export const addItemToOrder = async function (orderId, item) {
     }
 };
 
+// Delete item from an order
 export const deleteItemFromOrder= async function (orderId, item) {
     try {
         const updatedOrder = await Order.findByIdAndUpdate(
@@ -37,7 +38,7 @@ export const deleteItemFromOrder= async function (orderId, item) {
     }
 };
 
-
+// Create an order
 export const createOrderInRepository = async function (payload) {
     try {
       const addedOrder = new Order(payload);
@@ -48,6 +49,7 @@ export const createOrderInRepository = async function (payload) {
     }
 };
 
+// Delete an order
 export const deleteOrderFromRepository = async function (query) {
     try {
         const deletedOrder = await Order.findOneAndDelete({ ...query });
@@ -57,6 +59,7 @@ export const deleteOrderFromRepository = async function (query) {
     }
 }
 
+// Update status of order
 export const updateOrderStatus = async function (orderId, body) {
     try {
         const updatedOrder = await Order.findByIdAndUpdate(

@@ -14,18 +14,6 @@ const CartPage = () => {
   
   const { cart } = useCart(); // Access cart state from the context
   const [currentMenu, setCurrentMenu] = useState("");
-  // const [orders, setOrders] = useState([]);
-
-  // //Order Fetch
-  // useEffect(() => {
-  //   const fetchOrders = async () => {
-  //     const response = await axios.get(
-  //       'http://localhost:8000/orders',
-  //     );
-  //     setOrders(response.data);
-  //   };
-  //   fetchOrders();
-  // }, []);
 
   const handleInProgress = () => {
     setCurrentMenu("in progress");

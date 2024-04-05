@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const ManagerSchema = new mongoose.Schema(
     {
-        firstName: { type: String, requiried: true },
-        lastName: { type: String, requiried: true },
-        restaurant_id: { type: mongoose.Schema.Types.ObjectId, ref: "restaurants"},
-        position: { type: String }
+        firstName: { type: String, requiried: true }, //First name of manager
+        lastName: { type: String, requiried: true }, //Last name of manager
+        restaurant_id: { type: mongoose.Schema.Types.ObjectId, ref: "restaurants"}, //Object Id of Restaurant
+        position: { type: String } //Mangers position
         },
     { timestamps: true, strictQuery: true }
 );

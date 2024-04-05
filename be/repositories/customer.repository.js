@@ -1,5 +1,6 @@
 import Customer from "../models/customer.model.js";
 
+// Get Customer repo function
 export const getCustomersFromRepository = async function (query) {
     try {
       const customers = await Customer.find(query);
@@ -9,6 +10,7 @@ export const getCustomersFromRepository = async function (query) {
     }
   };
 
+  // Add Customer repo function
   export const addCustomerToRepository = async function (payload) {
     try {
         const addedCustomer = new Customer(payload);

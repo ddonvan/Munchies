@@ -1,13 +1,13 @@
 .managermenuList {
     display: flex; /* Display ManagerMenu items in a row */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    width: 100%; /* Ensure the container takes up full width */
-    padding: 10px; /* Add some padding */
+    overflow-x: auto; 
+    width: 100%; 
+    padding: 10px; 
 }
 
 .managermenu-item {
-    flex: 0 0 auto; /* Let items grow and shrink as needed */
-    margin-right: 10px; /* Add some space between items */
+    flex: 0 0 auto; /* Let items grow and shrink */
+    margin-right: 10px; 
 }
 
 .managermenu-item:last-child {

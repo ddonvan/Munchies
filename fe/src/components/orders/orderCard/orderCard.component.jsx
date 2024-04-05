@@ -37,6 +37,7 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
     }
     //-------------------------
 
+    // Order placing
     const handlePlaceClick = () => {
         setShowModal(true);
     }
@@ -45,6 +46,7 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
         setShowModal(false);
     }
 
+    // Selecting pickup time
     const handleSelect = (time) => {
         setSelectedPickupTime(time);
     };

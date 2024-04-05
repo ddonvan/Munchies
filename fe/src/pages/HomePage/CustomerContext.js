@@ -20,6 +20,7 @@ export const CustomerIdProvider = ({ children }) => {
       fetchCustomers();
     }, []);
 
+    // ensuring right index is selected in dropdown
     const handleCustomerSelect = (e) => {
       const selectedCustomerId = e.target.selectedIndex-1;
       const selectedCustomer = customers[selectedCustomerId];

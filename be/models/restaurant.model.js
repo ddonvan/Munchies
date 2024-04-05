@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const RestaurantSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true},
-        address: { type: String },
-        imageURL: { type: String }
+        name: { type: String, required: true}, // Restaurant name
+        address: { type: String }, // Address of restaurant
+        imageURL: { type: String } // Image URL for restaurant
         
     },
     { timestamps: true, strictQuery: true}

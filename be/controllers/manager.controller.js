@@ -1,6 +1,6 @@
 import { getManagerFromRepository, updateManagerinRepository, addManagerToRepository } from "../repositories/manager.repository.js";
 
-// Gets a list of all courses in the database
+// Get all managers
 export const getManagers = async function (req, res, next) {
     try {
         const managers = await getManagerFromRepository({});
@@ -10,7 +10,7 @@ export const getManagers = async function (req, res, next) {
     }
 }
 
-// gets a course based on the given course id
+// Get a manager based on id
 export const getManager = async (req, res) => {
     const { id } = req.params;
     try {
@@ -21,6 +21,7 @@ export const getManager = async (req, res) => {
     }
 }
 
+// Get managers based on restaurant id
 export const getManagersFromRestaurant = async (req, res) => {
     const { restId } = req.params;
     try {
@@ -31,7 +32,7 @@ export const getManagersFromRestaurant = async (req, res) => {
       }
 }
 
-
+// Add manager
 export const addManager = async (req, res) => {
     const { body } = req;
     try {
@@ -42,8 +43,8 @@ export const addManager = async (req, res) => {
       res.status(500).send(`${e.message} failed to add manager`);
     }
   }
-
-export const updateManager = async (req, res) => {
+  // Update manager
+  export const updateManager = async (req, res) => {
     const { id } = req.params;
     const { body } = req;
     try {

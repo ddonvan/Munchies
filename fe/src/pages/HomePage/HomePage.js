@@ -12,27 +12,6 @@ function HomePage() {
     const menuRef = React.useRef(null);
     const ordersRef = React.useRef(null);
     const analyticsRef = React.useRef(null);
-    // const [customers, setCustomers] = useState([]);
-    // const [customerId, setCustomerId] = useState('');
-
-    // //Customer fetching
-    // useEffect(() => {
-    //   const fetchCustomers = async () => {
-    //     const response = await axios.get(
-    //       'http://localhost:8000/customers'
-    //     );
-    //     setCustomers(response.data);
-    //   };
-    //   fetchCustomers();
-    // }, []);
-
-    // const handleCustomerSelect = (e) => {
-    //   const selectedCustomerId = e.target.selectedIndex-1;
-    //   const selectedCustomer = customers[selectedCustomerId];
-    //   const cId = selectedCustomer["_id"];
-    //   console.log(cId);
-    //   setCustomerId(cId);
-    // }
     
     //Restaurant fetching
     useEffect(() => {

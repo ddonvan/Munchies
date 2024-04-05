@@ -93,14 +93,31 @@ function ManagerPage() {
       setCurrentOrders(filteredOrders);
     };
 
+    const handleAll = () => {
+      setSelection("");
+      const filteredOrders = orders.filter(order => order.restaurant_id === currentRest && order.status !== "pending");
+      setCurrentOrders(filteredOrders);
+    };
+
 
     useEffect(() => {
       const setOrder = async () => {
         if(currentRest){
           let filteredOrders = []
           if(selection === ""){
-            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending" && order.status !== "Completed");
-          } else if (selection === "completed") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status !== "pending");
+            
+          }  else if (selection === "Ordered") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
+          }
+          else if (selection === "In Progress") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
+          }
+          else if (selection === "Awaiting Pickup") {
+            filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
+          }
+          
+          else if (selection === "Completed") {
             filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
           }
             
@@ -236,6 +253,20 @@ const fetchOrders = async () => {
         });
     };
 
+      // Define the custom order of statuses
+  const statusOrder = ["Ordered", "In Progress", "Awaiting Pickup", "Completed"];
+
+  // Custom sorting function based on status order
+  const customSort = (a, b) => {
+      const statusA = a.status;
+      const statusB = b.status;
+      return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB);
+  };
+
+  // Use the custom sorting function to sort orders
+  const sortedOrders = currentOrders.sort(customSort);
+
+
     
 
   
@@ -297,6 +328,7 @@ const fetchOrders = async () => {
     <Button onClick={handleInProgress}>In Progress</Button>
     <Button onClick={handleAwaiting}>Awaiting Pickup</Button>
     <Button onClick={handleComplete}>Completed</Button>
+    <Button onClick={handleAll}>See All</Button>
     <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>
     </div>
   </div>

@@ -104,6 +104,7 @@ function ManagerPage() {
 
     const handleAll = () => {
       setSelection("");
+      setActiveButton('See All');
       const filteredOrders = orders.filter(order => order.restaurant_id === currentRest && order.status !== "pending");
       setCurrentOrders(filteredOrders);
     };
@@ -339,7 +340,7 @@ const fetchOrders = async () => {
               variant={activeButton === 'Ordered' ? "primary" : "outline-primary"} 
               onClick={() => handleButtonClick('Ordered', handleOrdered)}
               className="orderButton"
-              active={activeButton === 'Ordered'}
+              active={activeButton === 'Ordered' || activeButton === 'See All'}
             >
               Ordered
             </Button>
@@ -347,7 +348,7 @@ const fetchOrders = async () => {
               variant={activeButton === 'In Progress' ? "primary" : "outline-primary"} 
               onClick={() => handleButtonClick('In Progress', handleInProgress)} 
               className="orderButton"
-              active={activeButton === 'In Progress'}
+              active={activeButton === 'In Progress' || activeButton === 'See All'}
             >
               In Progress
             </Button>
@@ -355,7 +356,7 @@ const fetchOrders = async () => {
               variant={activeButton === 'Awaiting Pickup' ? "primary" : "outline-primary"} 
               onClick={() => handleButtonClick('Awaiting Pickup', handleAwaiting)} 
               className="orderButton"
-              active={activeButton === 'Awaiting Pickup'}
+              active={activeButton === 'Awaiting Pickup' || activeButton === 'See All'}
             >
               Awaiting Pickup
             </Button>
@@ -363,12 +364,12 @@ const fetchOrders = async () => {
               variant={activeButton === 'Completed' ? "primary" : "outline-primary"} 
               onClick={() => handleButtonClick('Completed', handleComplete)} 
               className="orderButton"
-              active={activeButton === 'Completed'}
+              active={activeButton === 'Completed' || activeButton === 'See All'}
             >
               Completed
             </Button>
           </div>
-          <Button onClick={handleAll} className="seeAllButton">See All</Button>
+          <Button onClick={handleAll} className="seeAllButton" style={{backgroundColor: '#dc894a', marginRight: '20px'}}>See All</Button>
       </div>
       <div className="managerOrderListContainer">
         <ManagerOrderList orders={currentOrders} fetchOrders={fetchOrders}/>

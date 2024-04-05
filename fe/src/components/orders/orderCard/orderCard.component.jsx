@@ -223,14 +223,15 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
                         <h5>{pickup_time}</h5>
                     )}
                 </div>
-                {status === "Awaiting Pickup" && (
-                        <Button onClick={handleOrderComplete}>Mark Completed</Button>
-                    )}
 
                 <div className="place-order-container ">
                     {status === "pending" && (
                         <Button className="place-order" variant="outline-primary"
                             onClick={handlePlaceClick}>Place Order</Button>
+                    )}
+                    {status === "Awaiting Pickup" && (
+                        <Button className="place-order" variant="outline-primary" 
+                            onClick={handleOrderComplete}>Mark Completed</Button>
                     )}
                     
                 </div>

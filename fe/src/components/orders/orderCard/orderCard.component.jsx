@@ -84,6 +84,19 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
         }
     }
 
+    const handleOrderComplete = async () => {
+        try {
+            await axios.patch(`http://localhost:8000/orders/update/${_id}`, {
+                status: "Completed"
+            });
+            setShowModal(false);
+
+            fetchOrders();
+        } catch (e) {
+            console.error("Error placing order:", e);
+        }
+    }
+
     // calculate subtotal
     const subtotal = items.reduce((acc, item) => {
         const menuItem = menus.find(menu => menu._id === item.item_id);
@@ -93,8 +106,6 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
         }
         return acc;
     }, 0);
-
-    console.log(selectedPickupTime);
 
     // Function to calculate progress percentage based on status
     const getStatusProgress = (status) => {
@@ -204,6 +215,9 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
                 </div>
 
                 <h5 style={{ paddingBottom: '10px' }}>Status: <strong>{status}</strong></h5>
+                {status === "Awaiting Pickup" && (
+                        <Button onClick={handleOrderComplete}>Mark Completed</Button>
+                    )}
 
                 <div className="pickup-time">
                     <h5 style={{ marginRight: '8px' }}>Pickup Time: </h5>
@@ -219,6 +233,7 @@ export const Order = ({ order, onDelete, fetchOrders }) => {
                         <Button className="place-order" variant="outline-primary"
                             onClick={handlePlaceClick}>Place Order</Button>
                     )}
+                    
                 </div>
             </div>
             <Modal className="modal-order" show={showModal} onHide={handleCloseModal}>

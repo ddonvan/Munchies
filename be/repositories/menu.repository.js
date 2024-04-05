@@ -1,5 +1,6 @@
 import Menu from "../models/menu.model.js";
 
+// Get Menu repo function
 export const getMenuFromRepository = async function (query) {
     try {
       const menus = await Menu.find(query);
@@ -9,6 +10,7 @@ export const getMenuFromRepository = async function (query) {
     }
   };
   
+  // Add Menu Item repo function
   export const addItemToMenu = async function (payload) {
       try {
           const addedItem = new Menu(payload);
@@ -19,6 +21,7 @@ export const getMenuFromRepository = async function (query) {
       }
   };
   
+  // Delete Menu item repo function
   export const deleteItemFromMenu = async function (query) {
       try {
           const deletedItem = await Menu.findOneAndDelete({...query})
@@ -28,6 +31,7 @@ export const getMenuFromRepository = async function (query) {
       }
   };
   
+  // Update Menu Item repo function
   export const updateItemInMenu = async function (query, payload) {
       try {
         const updatedItem = await Menu.findOneAndUpdate(

@@ -1,5 +1,6 @@
 import { getMenuFromRepository, updateItemInMenu, deleteItemFromMenu, addItemToMenu } from '../repositories/menu.repository.js';
 
+// Get all menus
 export const getMenus = async (req, res) => {
   try {
     const menus = await getMenuFromRepository({});
@@ -9,6 +10,7 @@ export const getMenus = async (req, res) => {
   }
 }
 
+// Get an item from a menu
 export const getMenuItem = async (req, res) => {
   const { id } = req.params;
   try {
@@ -19,6 +21,7 @@ export const getMenuItem = async (req, res) => {
   }
 }
 
+// Get items from a restaurant
 export const getItemsOnRestaurantMenu = async (req, res) => {
     const { restId } = req.params;
     try {
@@ -29,6 +32,7 @@ export const getItemsOnRestaurantMenu = async (req, res) => {
       }
 }
 
+// Update a menu item
 export const updateMenuItem = async (req, res) => {
   const { id } = req.params;
   const { body } = req;
@@ -40,6 +44,7 @@ export const updateMenuItem = async (req, res) => {
   }
 }
 
+// Delete a menu item
 export const deleteMenuItem = async (req, res) => {
   const { id } = req.params;
   try {
@@ -54,6 +59,7 @@ export const deleteMenuItem = async (req, res) => {
   }
 };
 
+// Add a menu item
 export const addMenuItem = async (req, res) => {
   const { body } = req;
   try {

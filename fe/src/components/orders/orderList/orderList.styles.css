@@ -6,5 +6,5 @@
 }
 
 .orderList > .order-container:not(:last-child) {
-    margin-bottom: 10px; /* Add space between cards */
+    margin-bottom: 10px; 
 }

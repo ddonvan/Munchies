@@ -15,7 +15,7 @@
 }
 
 .row1, .row2{
-    display: flex; /* Use flexbox */
+    display: flex; 
  
 }
 .analyticstitle{
@@ -57,7 +57,7 @@
 
 .plot-container {
     padding: 0;
-    width: 100%; /* Adjust the width as needed */
+    width: 100%; 
 }
 
 .orderFreqTitle, .custFreqTitle, .timeFreqTitle, .itemFreqTitle, .revenueTitle {

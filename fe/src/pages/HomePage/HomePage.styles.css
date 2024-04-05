@@ -1,6 +1,6 @@
 .HomePage {
   text-align: center;
-  max-height: 100vh; /* Set a maximum height equal to the viewport height */
+  max-height: 100vh; 
   font-family: "Karla", serif;
 
   
@@ -22,8 +22,8 @@
 
   .container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center; 
+    align-items: center; 
     
     
    
@@ -31,22 +31,21 @@
 
   .orange-box {
     color: white;
-    /* background-color: #2929297e; */
     padding: 10px;
     border-radius: 5px;
     text-align: center;
     z-index: 5;
-    max-width: 90%; /* Set maximum width */
-    width: 1050px; /* Set initial width */
+    max-width: 90%; 
+    width: 1050px; 
     height: 400px;
     margin-top: -380px; /* Adjust margin-top to position higher */
     margin-left: auto;
     margin-right: auto;
-    position: relative; /* Position relative to its container */
+    position: relative; 
     top: 50%; /* Move down by 50% of container height */
     transform: translateY(-50%); /* Center vertically */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    justify-content: center; 
+    align-items: center; 
     display: flex;
     flex-direction: column;
     border-radius: 20px;
@@ -110,7 +109,6 @@
   }
 
   .custom-select {
-    /* Your custom styles for the select element */
     border-radius: 5px;
     margin-bottom: 15px;
     width: 170px;

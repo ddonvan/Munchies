@@ -1,5 +1,6 @@
 import Restaurant from "../models/restaurant.model.js";
 
+// Get all restaurants
 export const getRestaurantsFromRepository = async function (query) {
   try {
     const restaurants = await Restaurant.find(query);
@@ -9,6 +10,7 @@ export const getRestaurantsFromRepository = async function (query) {
   }
 };
 
+// Add a restaurant
 export const addRestaurantToRepository = async function (payload) {
     try {
         const addedRestaurant = new Restaurant(payload);
@@ -19,6 +21,7 @@ export const addRestaurantToRepository = async function (payload) {
     }
 };
 
+// Update a restaurant
 export const updateRestaurantinRepository = async function (query, payload) {
     try {
       const updatedRestaurant = await Restaurant.findOneAndUpdate(

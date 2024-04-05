@@ -66,7 +66,7 @@ function ManagerPage() {
         setMenus(response.data);
       };
 
-
+      // filtering menus
       useEffect(() => {
       const setMenu = async () => {
         if(currentRest){
@@ -78,30 +78,35 @@ function ManagerPage() {
       setMenu();
     }, [menus]);
 
+    // filter orders in progress
     const handleInProgress = () => {
       setSelection("in progress");
       const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "In Progress");
       setCurrentOrders(filteredOrders);
     };
-  
+    
+    // filter orders that have been ordered
     const handleOrdered = () => {
       setSelection("ordered");
       const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Ordered");
       setCurrentOrders(filteredOrders);
     };
-  
+    
+    // filter orders that are complete
     const handleComplete = () => {
       setSelection("completed");
       const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Completed");
       setCurrentOrders(filteredOrders);
     };
 
+    // filter orders awaiting pickup
     const handleAwaiting = () => {
       setSelection("awaiting pickup");
       const filteredOrders = orders.filter(order => order.restaurant_id === currentRest  && order.status === "Awaiting Pickup");
       setCurrentOrders(filteredOrders);
     };
-
+    
+    // filter orders that are pending
     const handleAll = () => {
       setSelection("");
       setActiveButton('See All');
@@ -109,7 +114,7 @@ function ManagerPage() {
       setCurrentOrders(filteredOrders);
     };
 
-
+    // filter orders based on status for current restaurant
     useEffect(() => {
       const setOrder = async () => {
         if(currentRest){
@@ -184,6 +189,7 @@ const fetchOrders = async () => {
         fetchManagers();
       }, []);
 
+      // filters data based on selected manager
       const handleManagerSelect = (selectedManager) => {
         const restID = selectedManager.restaurant_id;
         setCurrentRest(restID);
@@ -205,12 +211,7 @@ const fetchOrders = async () => {
         setShowModal(false); // Close Modal
     };
 
-    // const handleDeleteMenuItem = (deletedItem) => {
-    //   const updatedMenus = menus.filter(item => item._id !== deletedItem._id);
-    //   setMenus(updatedMenus);
-    // };
-
-
+    // handle editing a menu item
     const handleSaveModal = async () => {
       const name = formData["name"];
       const category = formData["category"];

@@ -1,6 +1,6 @@
 import { addItemToOrder, getOrdersFromRepository, updateOrderStatus, deleteItemFromOrder, createOrderInRepository, deleteOrderFromRepository } from "../repositories/order.repository.js";
 
-// Gets a list of all courses in the database
+// Get all orders
 export const getOrders = async function (req, res, next) {
     try {
         const orders = await getOrdersFromRepository({});
@@ -10,7 +10,7 @@ export const getOrders = async function (req, res, next) {
     }
 }
 
-// gets a course based on the given course id
+// Get an order based on id
 export const getOrder = async (req, res) => {
     const { id } = req.params;
     try {
@@ -21,6 +21,7 @@ export const getOrder = async (req, res) => {
     }
 }
 
+// Add an item to an order
 export const addOrderItem = async(req, res) => {
     const { id } = req.params;
     const { body } = req;
@@ -33,6 +34,7 @@ export const addOrderItem = async(req, res) => {
     }
 }
 
+// Delete an item from an order
 export const deleteOrderItem = async(req, res) => {
     const { id } = req.params;
     const { body } = req;
@@ -45,7 +47,7 @@ export const deleteOrderItem = async(req, res) => {
     }
 }
 
-// updates everything
+// Update the status of an order
 export const updateStatus= async(req, res) => {
     const { id } = req.params;
     const { body } = req;
@@ -61,6 +63,7 @@ export const updateStatus= async(req, res) => {
     }
 }
 
+// Create an order
 export const createOrder = async (req, res) => {
     const { body } = req;
     try {
@@ -71,6 +74,7 @@ export const createOrder = async (req, res) => {
     }
 };
 
+// Delete an order
 export const deleteOrder = async (req, res) => {
     const { id } = req.params;
     try {

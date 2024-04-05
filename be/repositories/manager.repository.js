@@ -1,5 +1,6 @@
 import Manager from "../models/manager.model.js";
 
+// Get Manager repo function
 export const getManagerFromRepository = async function (query) {
   try {
     const manager = await Manager.find(query);
@@ -9,6 +10,7 @@ export const getManagerFromRepository = async function (query) {
   }
 };
 
+// Add Manager repo function
 export const addManagerToRepository = async function (payload) {
     try {
         const addedManager = new Manager(payload);
@@ -19,6 +21,7 @@ export const addManagerToRepository = async function (payload) {
     }
 };
 
+// Update Manager repo function
 export const updateManagerinRepository = async function (query, payload) {
     try {
       const updatedManager = await Manager.findOneAndUpdate(

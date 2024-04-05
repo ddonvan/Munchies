@@ -3,9 +3,9 @@ import { getRestaurants, getRestaurant, addRestaurant, updateRestaurant } from "
 
 const router = express.Router();
 
-router.get("/", getRestaurants);
-router.get("/:id", getRestaurant);
-router.post('/', addRestaurant);
-router.patch("/update/:id", updateRestaurant);
+router.get("/", getRestaurants); // route for getting all restaurants
+router.get("/:id", getRestaurant); // route for getting a restaurant
+router.post('/', addRestaurant); // route for adding a restaurant
+router.patch("/update/:id", updateRestaurant); // route for updating a restaurant
 
 export default router;

@@ -74,7 +74,7 @@
     background-position: center;
     background-color: rgba(0,0,0,0.5); /* Add a semi-transparent overlay */
     z-index: 1; /* Lower z-index to ensure it's behind the text content */
-    filter: brightness(40%); /* Apply the filter directly to the background image */
+    filter: brightness(40%); 
 }
 
 
@@ -139,14 +139,14 @@
 
 .buttonsContainer {
     display: flex;
-    justify-content: space-between; /* Space out the buttons */
-    width: 100%; /* Ensure full width */
-    margin-bottom: 10px; /* Add some bottom margin */
+    justify-content: space-between; 
+    width: 100%; 
+    margin-bottom: 10px; 
     margin-left: 10px;
 }
 
 .orderButton {
-    margin-right: 10px; /* Add margin between the buttons */
+    margin-right: 10px; 
 }
 
 .seeAllButton{
@@ -155,7 +155,7 @@
 }
 
 .managerOrderListContainer {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    width: 100%; /* Ensure full width */
+    overflow-x: auto; 
+    width: 100%; 
 }
 

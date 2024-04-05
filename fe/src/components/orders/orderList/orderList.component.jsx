@@ -26,6 +26,7 @@ const { customerId } = useCustomerId();
         setOrders(prevOrders => prevOrders.filter(order => order._id !== deletedOrder._id));
     };
 
+    // filter orders based on status
     let filteredOrders = [];
     if (selected === "in progress") {
       filteredOrders = customerId

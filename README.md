@@ -13,21 +13,24 @@ Description:<br>
 
 
 ## Running the Application:
-1. Start Backend Server:
-Inside the be folder, start the backend server.
+1. Load the data
+```
+npm run loadData
+```
+
+2. Start Backend Server inside the be folder
 ```
 npm i
 npm start
 ```
 
-2. Start Frontend Server:
-Inside the fe folder, start the frontend server.
+3. Start Frontend Server inside the fe folder
 ```
 npm i
 npm start
 ```
 
-3. Accessing the Application:
+4. Accessing the Application:
 Once both backend and frontend servers are running, you can access the application by opening your web browser and navigating to the specified address, typically http://localhost:3000.
 
 

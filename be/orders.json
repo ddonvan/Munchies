@@ -1,0 +1,157 @@
+[
+    {
+        "_id": "660ef1fc0c2a301d69ea3bb0",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+        {
+        "item_id": "65f349e1512b8614096d7bb1",
+        "quantity": 3,
+        "_id": "660ef1fc0c2a301d69ea3bb1"
+        },
+        {
+        "item_id": "65f349f5512b8614096d7bb3",
+        "quantity": 1,
+        "_id": "660ef2020c2a301d69ea3bb3"
+        }
+        ],
+        "pickup_time": "13:00",
+        "status": "Completed"
+    },
+    {
+        "_id": "660ef3080c2a301d69ea3c0e",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f47de0178da402f8591c4c",
+        "items": [
+            {
+            "item_id": "65fb0aa1638f7d7948b6bb07",
+            "quantity": 1,
+            "_id": "660ef3080c2a301d69ea3c0f"
+            }
+        ],
+        "pickup_time": "",
+        "status": "Completed",
+        "createdAt": "2024-04-04T18:35:52.036Z",
+        "updatedAt": "2024-04-04T18:37:16.842Z",
+        "__v": 0
+    },
+    {
+        "_id": "660ef3a10c2a301d69ea3c80",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "660ef3a10c2a301d69ea3c81"
+            }
+        ],
+        "pickup_time": "13:00",
+        "status": "Awaiting Pickup",
+        "createdAt": "2024-04-04T18:38:25.060Z",
+        "updatedAt": "2024-04-05T02:49:30.175Z",
+        "__v": 0
+    },
+    {
+        "_id": "660ef4600c2a301d69ea3ce2",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f47e0d178da402f8591c50",
+        "items": [
+            {
+            "item_id": "65fb0d12638f7d7948b6bb10",
+            "quantity": 1,
+            "_id": "660ef4600c2a301d69ea3ce3"
+            }
+        ],
+        "pickup_time": "",
+        "status": "Ordered",
+        "createdAt": "2024-04-04T18:41:36.797Z",
+        "updatedAt": "2024-04-04T21:29:52.050Z",
+        "__v": 0
+        },
+    {
+        "_id": "660f3ca1f37da063a7617a47",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "660f3ca1f37da063a7617a48"
+            }
+        ],
+        "pickup_time": "ASAP",
+        "status": "Completed",
+        "createdAt": "2024-04-04T23:49:53.905Z",
+        "updatedAt": "2024-04-05T16:20:22.971Z",
+        "__v": 0
+    },
+    {
+        "_id": "660f5a3ff1e9331ea31bde7a",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "660f5a3ff1e9331ea31bde7b"
+            }
+        ],
+        "pickup_time": "ASAP",
+        "status": "Awaiting Pickup",
+        "createdAt": "2024-04-05T01:56:15.603Z",
+        "updatedAt": "2024-04-05T03:20:17.442Z",
+        "__v": 0
+    },
+    {
+        "_id": "660f73b7f1e9331ea31be746",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "660f73b7f1e9331ea31be747"
+            }
+        ],
+        "pickup_time": "ASAP",
+        "status": "Ordered",
+        "createdAt": "2024-04-05T03:44:55.945Z",
+        "updatedAt": "2024-04-05T16:19:32.354Z",
+        "__v": 0
+    },
+    {
+        "_id": "660f82a6538140fa9ee5fb34",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "660f82a6538140fa9ee5fb35"
+            }
+        ],
+        "pickup_time": "pending",
+        "status": "pending",
+        "createdAt": "2024-04-05T04:48:38.267Z",
+        "updatedAt": "2024-04-05T04:48:38.267Z",
+        "__v": 0
+    },
+    {
+        "_id": "66102473c7a6b605d0f19a1b",
+        "customer_id": "660c9a147fd674e189932b33",
+        "restaurant_id": "65f34821512b8614096d7ba5",
+        "items": [
+            {
+            "item_id": "65f349e1512b8614096d7bb1",
+            "quantity": 1,
+            "_id": "66102473c7a6b605d0f19a1c"
+            }
+        ],
+        "pickup_time": "pending",
+        "status": "pending",
+        "createdAt": "2024-04-05T16:18:59.896Z",
+        "updatedAt": "2024-04-05T16:18:59.896Z",
+        "__v": 0
+    }
+]

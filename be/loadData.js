@@ -61,16 +61,16 @@ const insertRestaurants = async () => {
 };
 
 
-const insertOrders = async () => {
-    try {
-      const data = await fs.promises.readFile('orders.json', 'utf8');
-      const jsonData = JSON.parse(data);
-      const docs = await Order.insertMany(jsonData);
-      console.log('Successfully inserted Orders:', docs.length);
-    } catch (err) {
-      console.error('Error inserting Orders:', err);
-    }
-};
+// const insertOrders = async () => {
+//     try {
+//       const data = await fs.promises.readFile('orders.json', 'utf8');
+//       const jsonData = JSON.parse(data);
+//       const docs = await Order.insertMany(jsonData);
+//       console.log('Successfully inserted Orders:', docs.length);
+//     } catch (err) {
+//       console.error('Error inserting Orders:', err);
+//     }
+// };
   
 
 // Insert courses and students
@@ -79,7 +79,7 @@ const insertData = async () => {
   await insertManagers();
   await insertMenus();
   await insertRestaurants();
-  await insertOrders();
+  // await insertOrders();
 };
 
 insertData(); // Invoke the function to start inserting data

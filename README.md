@@ -1,6 +1,4 @@
-# CMPT 315 Final Project
-
-Project Name: MUNCHIES <br>
+# Munchies
 
 Team Members: 
 - Katherine Cholowski 
